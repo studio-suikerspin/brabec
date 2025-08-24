@@ -1,7 +1,26 @@
 @import 'tailwindcss';
 
+:root {
+  --grey_block: #F2F0EF;
+
+  --accent_primary: #FF6E02;
+  --accent_secondary: #153E5A;
+
+  --white: #FFFFFF;
+  --black: #000000;
+
+  --white-30: #FFFFFF4D;
+}
+
+@utility container {
+  margin-inline: auto;
+}
+
 body {
   font-family: 'Work Sans', sans-serif;
+  background: var(--grey_block);
+
+  padding: 16px;
 }
 
 h1, h2, h3, h4, h5, h6, .title-font {

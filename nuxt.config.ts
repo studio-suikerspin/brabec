@@ -22,6 +22,12 @@ export default defineNuxtConfig({
   },
 
   modules: ['@nuxt/eslint', '@nuxtjs/prismic', '@nuxt/fonts'],
+
+  fonts: {
+    defaults: {
+      weights: [400, 500, 600, 800]
+    }
+  },
   
   vite: {
     plugins: [
@@ -29,7 +35,7 @@ export default defineNuxtConfig({
     ]
   },
   
-  css: ['~/assets/css/global.css'],
+  css: ['~/assets/css/global.css', '~/assets/fonts/icons/iconly.min.css'],
 
   prismic: {
     endpoint: apiEndpoint || repositoryName,

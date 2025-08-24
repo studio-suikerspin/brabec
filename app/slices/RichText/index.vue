@@ -21,7 +21,7 @@ defineProps(getSliceComponentProps<Content.RichTextSlice>(
 <style scoped>
 section:deep(.richtext) {
   max-width: 600px;
-  margin: 6em auto;
+  margin: 6em auto; 
 }
 
 section:deep(.richtext .codespan) {
