@@ -1,0 +1,83 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Digitaliseren op jouw manier",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"subtitle": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Heldere stappen, persoonlijke aanpak en blijvende ondersteuning – zonder hoge consultancykosten.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"ctas": {
+				"__TYPE__": "RepeatableContent",
+				"type": "Link",
+				"value": [
+					{
+						"key": "44ddb7f7-8418-4e05-bdd7-25088820b20f",
+						"__TYPE__": "LinkContent",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "#contact",
+							"text": "tongue"
+						}
+					}
+				]
+			},
+			"agenda": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"open",
+								{
+									"__TYPE__": "BooleanContent",
+									"value": true
+								}
+							],
+							[
+								"spots_text",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Text",
+									"value": "plekken"
+								}
+							],
+							[
+								"spots_available",
+								{
+									"__TYPE__": "FieldContent",
+									"type": "Number",
+									"value": "2"
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

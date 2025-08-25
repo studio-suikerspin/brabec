@@ -1,0 +1,80 @@
+{
+  "id": "hero",
+  "type": "SharedSlice",
+  "name": "Hero",
+  "description": "Hero",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1,heading2"
+          }
+        },
+        "subtitle": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subtitle",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "ctas": {
+          "type": "Link",
+          "config": {
+            "label": "CTAs",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true
+          }
+        },
+        "agenda": {
+          "type": "Group",
+          "config": {
+            "label": "Agenda",
+            "repeat": false,
+            "fields": {
+              "open": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Plekken beschikbaar?",
+                  "placeholder_false": "gesloten",
+                  "placeholder_true": "open",
+                  "default_value": false
+                }
+              },
+              "spots_available": {
+                "type": "Number",
+                "config": {
+                  "label": "Spots available",
+                  "placeholder": "2"
+                }
+              },
+              "spots_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Spots text",
+                  "placeholder": "plekken"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
