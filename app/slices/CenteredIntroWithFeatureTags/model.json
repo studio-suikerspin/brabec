@@ -1,0 +1,45 @@
+{
+  "type": "SharedSlice",
+  "id": "centered_intro_with_feature_tags",
+  "name": "CenteredIntroWithFeatureTags",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Centered headline and secondary text with floating feature tags/icons placed around the section.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1",
+            "label": "Title"
+          }
+        },
+        "feature_tags": {
+          "type": "Group",
+          "config": {
+            "label": "Feature Tags",
+            "fields": {
+              "icon": {
+                "type": "Image",
+                "config": {
+                  "label": "Icon"
+                }
+              },
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Label"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
