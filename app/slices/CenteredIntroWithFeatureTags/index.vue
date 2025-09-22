@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Content } from "@prismicio/client";
+import FeatureTag from "~/components/UI/FeatureTag.vue";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
@@ -14,40 +15,72 @@ defineProps(
 </script>
 
 <template>
-  <section
-    :data-slice-type="slice.slice_type"
+  <section 
+    class="centered-intro" 
+    :data-slice-type="slice.slice_type" 
     :data-slice-variation="slice.variation"
+    data-parallax="trigger"
   >
-    Placeholder component for centered_intro_with_feature_tags (variation:
-    {{ slice.variation }}) slices.
+    <div class="container">
+      <FeatureTag v-for="item in slice.primary.feature_tags" :key="item.key" :item="item" />
 
-    <br />
-    <strong>You can edit this slice directly in your code editor.</strong>
-    <!--
-	💡 Use Prismic MCP with your code editor
+      <div class="centered-intro__inner">
+        <PrismicRichText :field="slice.primary.title" />
+      </div>
+    </div>
 
-	Get AI-powered help to build your slice components — based on your actual model.
-
-	▶️ Setup:
-	1. Add a new MCP Server in your code editor:
-
-	{
-		"mcpServers": {
-			"Prismic MCP": {
-				"command": "npx",
-				"args": ["-y", "@prismicio/mcp-server@latest"]
-			}
-		}
-	}
-
-	2. Select a model optimized for coding (e.g. Claude 3.7 Sonnet or similar)
-
-	✅ Then open your slice file and ask your code editor:
-		"Code this slice"
-
-	Your code editor reads your slice model and helps you code faster ⚡
-	🎙️ Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-	📚 Documentation: https://prismic.io/docs/ai#code-with-prismics-mcp-server
--->
   </section>
 </template>
+
+<style lang="scss">
+.centered-intro {
+  position: relative;
+  background: white;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-block: 200px 100px;
+
+    h2 {
+      font-size: clamp(1.5rem, 0.7277rem + 3.1683vw, 3.5rem);
+      font-weight: 700;
+      line-height: 130%;
+      text-align: center;
+
+      text-wrap: balance;
+    }
+  }
+
+  .feature-tag {
+    position: absolute;
+    z-index: 5;
+  }
+
+  .feature-tag:nth-child(1) {
+    top: 150px;
+    left: 70px;
+    rotate: -5deg;
+  }
+
+  .feature-tag:nth-child(2) {
+    top: 150px;
+    right: 50px;
+    rotate: 2deg;
+  }
+
+  .feature-tag:nth-child(3) {
+    bottom: 50px;
+    left: 60px;
+    rotate: -2deg;
+  }
+
+  .feature-tag:nth-child(4) {
+    bottom: 40px;
+    right: 75px;
+    rotate: 7.5deg;
+  }
+}
+</style>

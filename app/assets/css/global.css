@@ -14,11 +14,12 @@
 
 @utility container {
   margin-inline: auto;
+  max-width: 1200px;
 }
 
 body {
   font-family: 'Work Sans', sans-serif;
-  background: var(--grey_block);
+  background: var(--white);
 }
 
 h1, h2, h3, h4, h5, h6, .title-font {
