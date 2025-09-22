@@ -19,8 +19,6 @@
 body {
   font-family: 'Work Sans', sans-serif;
   background: var(--grey_block);
-
-  padding: 16px;
 }
 
 h1, h2, h3, h4, h5, h6, .title-font {

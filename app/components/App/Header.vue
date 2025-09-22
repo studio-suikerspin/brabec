@@ -1,13 +1,22 @@
-<script lang="ts" setup>
-import type { SettingsDocument } from '~~/prismicio-types';
+<script setup>
+const headerRef = ref(null);
 
-const {settings} = defineProps<{
-  settings: SettingsDocument
-}>()
+onMounted(() => {
+  const header = headerRef.value;
+  window.addEventListener('scroll', () => {
+    if (window.scrollY >= 50) {
+      header.classList.add('header--fixed');
+    } 
+    
+    if (window.scrollY < 50) {
+      header.classList.remove('header--fixed');
+    }
+  })
+})
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" ref="headerRef">
     <div class="container">
       <div class="header__inner">
         <h1 class="logo">BRABEC</h1>
@@ -22,14 +31,51 @@ const {settings} = defineProps<{
 
 <style lang="scss">
 .header {
+  width: 100%;
+  position: absolute;
+  top: 24px;
+
+  transition: background 50ms ease-out;
+
+  z-index: 10000;
+
+  @media screen and (min-width: 992px) {
+    top: 50px;
+  }
+
+  &--fixed {
+    position: fixed;
+    top: 0;
+
+    background: #fff;
+
+    transition: background 100ms ease-out;
+
+    .header__inner {
+      width: 100%;
+    }
+
+    @media screen and (min-width: 992px) {
+      top: 0;
+    }
+  }
+
   &__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    padding-inline: 36px;
+    padding-block: 20px;
+    height: 80px;
+
+    @media screen and (min-width: 992px) {
+      padding-inline: 20px;
+    }
   }
 
   .logo {
-    font-size: 24px;
+    font-size: clamp(1.25rem, 1.1535rem + 0.396vw, 1.5rem);
     font-style: normal;
     font-weight: 800;
     line-height: normal;
