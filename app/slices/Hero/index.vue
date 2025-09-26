@@ -81,6 +81,7 @@ onMounted(() => {
 <style lang="scss">
 .hero {
   padding: 16px;
+  background: var(--grey_block);
   
   &__inner {
     display: flex;

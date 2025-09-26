@@ -69,7 +69,10 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type PageDocumentDataSlicesSlice = RichTextSlice;
+type PageDocumentDataSlicesSlice =
+  | CenteredIntroWithFeatureTagsSlice
+  | HeroSlice
+  | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -215,6 +218,90 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes = PageDocument | SettingsDocument;
+
+/**
+ * Item in *CenteredIntroWithFeatureTags → Default → Primary → Feature Tags*
+ */
+export interface CenteredIntroWithFeatureTagsSliceDefaultPrimaryFeatureTagsItem {
+  /**
+   * Icon field in *CenteredIntroWithFeatureTags → Default → Primary → Feature Tags*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: centered_intro_with_feature_tags.default.primary.feature_tags[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  icon: prismic.ImageField<never>;
+
+  /**
+   * Label field in *CenteredIntroWithFeatureTags → Default → Primary → Feature Tags*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: centered_intro_with_feature_tags.default.primary.feature_tags[].label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *CenteredIntroWithFeatureTags → Default → Primary*
+ */
+export interface CenteredIntroWithFeatureTagsSliceDefaultPrimary {
+  /**
+   * Title field in *CenteredIntroWithFeatureTags → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: centered_intro_with_feature_tags.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Feature Tags field in *CenteredIntroWithFeatureTags → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: centered_intro_with_feature_tags.default.primary.feature_tags[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  feature_tags: prismic.GroupField<
+    Simplify<CenteredIntroWithFeatureTagsSliceDefaultPrimaryFeatureTagsItem>
+  >;
+}
+
+/**
+ * Default variation for CenteredIntroWithFeatureTags Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Centered headline and secondary text with floating feature tags/icons placed around the section.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CenteredIntroWithFeatureTagsSliceDefault =
+  prismic.SharedSliceVariation<
+    "default",
+    Simplify<CenteredIntroWithFeatureTagsSliceDefaultPrimary>,
+    never
+  >;
+
+/**
+ * Slice variation for *CenteredIntroWithFeatureTags*
+ */
+type CenteredIntroWithFeatureTagsSliceVariation =
+  CenteredIntroWithFeatureTagsSliceDefault;
+
+/**
+ * CenteredIntroWithFeatureTags Shared Slice
+ *
+ * - **API ID**: `centered_intro_with_feature_tags`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CenteredIntroWithFeatureTagsSlice = prismic.SharedSlice<
+  "centered_intro_with_feature_tags",
+  CenteredIntroWithFeatureTagsSliceVariation
+>;
 
 /**
  * Item in *Hero → Default → Primary → Agenda*
@@ -398,6 +485,11 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       AllDocumentTypes,
+      CenteredIntroWithFeatureTagsSlice,
+      CenteredIntroWithFeatureTagsSliceDefaultPrimaryFeatureTagsItem,
+      CenteredIntroWithFeatureTagsSliceDefaultPrimary,
+      CenteredIntroWithFeatureTagsSliceVariation,
+      CenteredIntroWithFeatureTagsSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimaryAgendaItem,
       HeroSliceDefaultPrimary,
