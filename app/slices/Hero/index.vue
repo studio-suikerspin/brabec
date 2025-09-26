@@ -40,13 +40,13 @@ onMounted(() => {
   <div class="hero__inner">
       <AppHeader />
 
-      <AgendaStatus :agenda="slice.primary.agenda[0]"/>
+      <AgendaStatus :agenda="slice.primary.agenda[0]" data-parallax="trigger" />
 
       <PrismicRichText :field="slice.primary.heading" />
 
       <PrismicRichText :field="slice.primary.subtitle" wrapper="div" class="hero__subtitle" />
 
-      <div class="button-group">
+      <div class="button-group" data-parallax="trigger">
         <template v-for="link in slice.primary.ctas" :key="link.key">
           <UIButton 
             :href="link.url ? link.url : undefined" 
@@ -97,6 +97,9 @@ onMounted(() => {
 
     height: 90svh;
     min-height: 500px;
+
+    max-width: 1500px;
+    margin-inline: auto;
 
     @media screen and (min-width: 992px) {
       border-radius: 60px;
