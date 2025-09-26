@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { AgendaStatus } from "#components";
 import type { Content } from "@prismicio/client";
-import { gsap } from 'gsap';
 
+const { gsap } = useGsap()
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
@@ -95,7 +95,8 @@ onMounted(() => {
 
     padding-inline: 24px;
 
-    height: 90dvh;
+    height: 90svh;
+    min-height: 500px;
 
     @media screen and (min-width: 992px) {
       border-radius: 60px;

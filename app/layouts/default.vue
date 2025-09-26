@@ -1,10 +1,9 @@
 <script setup>
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 
 const prismic = usePrismic()
+const { gsap, ScrollTrigger } = useGsap()
 
 const { data: settings } = await useAsyncData(() => prismic.client.getSingle('settings'))
 
@@ -91,8 +90,6 @@ function initGlobalParallax() {
 }
 
 onMounted(() => {
-  gsap.registerPlugin(ScrollTrigger);
-
   const lenis = new Lenis();
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => {lenis.raf(time * 1000);});

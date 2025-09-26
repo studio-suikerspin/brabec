@@ -7,14 +7,16 @@
   --accent_secondary: #153E5A;
 
   --white: #FFFFFF;
-  --black: #000000;
-
   --white-30: #FFFFFF4D;
+  --black: #000000;
+  --black-20: rgba(0, 0, 0, 0.2);
 
   --padding-block: 200px;
   --padding-block--sm: 100px;
 
   --btn_border-radius: 50px;
+
+  --card_border-radius: 16px;
 }
 
 @utility container {

@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type PageDocumentDataSlicesSlice =
+  | ProcessStepsSlice
   | CenteredIntroWithFeatureTagsSlice
   | HeroSlice
   | RichTextSlice;
@@ -414,6 +415,108 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Item in *ProcessSteps → Cards with Numbers → Primary → Steps*
+ */
+export interface ProcessStepsSliceCardsWithNumbersPrimaryStepsItem {
+  /**
+   * Step Title field in *ProcessSteps → Cards with Numbers → Primary → Steps*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: process_steps.cards_with_numbers.primary.steps[].step_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  step_title: prismic.KeyTextField;
+
+  /**
+   * Step Description field in *ProcessSteps → Cards with Numbers → Primary → Steps*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: process_steps.cards_with_numbers.primary.steps[].step_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  step_description: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *ProcessSteps → Cards with Numbers → Primary*
+ */
+export interface ProcessStepsSliceCardsWithNumbersPrimary {
+  /**
+   * Eyebrow field in *ProcessSteps → Cards with Numbers → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: process_steps.cards_with_numbers.primary.eyebrow
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  eyebrow: prismic.KeyTextField;
+
+  /**
+   * Title field in *ProcessSteps → Cards with Numbers → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: process_steps.cards_with_numbers.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Steps field in *ProcessSteps → Cards with Numbers → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: process_steps.cards_with_numbers.primary.steps[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  steps: prismic.GroupField<
+    Simplify<ProcessStepsSliceCardsWithNumbersPrimaryStepsItem>
+  >;
+
+  /**
+   * Call To Action field in *ProcessSteps → Cards with Numbers → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: process_steps.cards_with_numbers.primary.cta
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Cards with Numbers variation for ProcessSteps Slice
+ *
+ * - **API ID**: `cards_with_numbers`
+ * - **Description**: Displays each process step in a numbered card format with the option for step titles and descriptions, a heading, optional eyebrow, and a single call-to-action button.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ProcessStepsSliceCardsWithNumbers = prismic.SharedSliceVariation<
+  "cards_with_numbers",
+  Simplify<ProcessStepsSliceCardsWithNumbersPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProcessSteps*
+ */
+type ProcessStepsSliceVariation = ProcessStepsSliceCardsWithNumbers;
+
+/**
+ * ProcessSteps Shared Slice
+ *
+ * - **API ID**: `process_steps`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ProcessStepsSlice = prismic.SharedSlice<
+  "process_steps",
+  ProcessStepsSliceVariation
+>;
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -495,6 +598,11 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      ProcessStepsSlice,
+      ProcessStepsSliceCardsWithNumbersPrimaryStepsItem,
+      ProcessStepsSliceCardsWithNumbersPrimary,
+      ProcessStepsSliceVariation,
+      ProcessStepsSliceCardsWithNumbers,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
