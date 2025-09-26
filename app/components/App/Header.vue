@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <header class="header" ref="headerRef">
+  <header ref="headerRef" class="header">
     <div class="container">
       <div class="header__inner">
         <h1 class="logo">BRABEC</h1>
@@ -47,7 +47,7 @@ onMounted(() => {
     position: fixed;
     top: 0;
 
-    background: #fff;
+    // background: #fff;
 
     transition: background 100ms ease-out;
 

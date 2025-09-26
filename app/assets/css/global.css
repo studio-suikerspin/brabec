@@ -10,11 +10,40 @@
   --black: #000000;
 
   --white-30: #FFFFFF4D;
+
+  --padding-block: 200px;
+  --padding-block--sm: 100px;
 }
 
 @utility container {
   margin-inline: auto;
   max-width: 1200px;
+}
+
+.block-padding {
+  padding-block: var(--padding-block--sm);
+}
+
+.block-padding--start {
+  padding-block-start: var(--padding-block--sm);
+}
+
+.block-padding--end {
+  padding-block-end: var(--padding-block--sm);
+}
+
+@media screen and (min-width: 992px) {
+  .block-padding {
+    padding-block: var(--padding-block);
+  }
+
+  .block-padding--start {
+    padding-block-start: var(--padding-block);
+  }
+
+  .block-padding--end {
+    padding-block-end: var(--padding-block);
+  }
 }
 
 body {

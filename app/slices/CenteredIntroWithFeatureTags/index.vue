@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { Content } from "@prismicio/client";
+
+// Components
 import FeatureTag from "~/components/UI/FeatureTag.vue";
+import RevealType from "~/components/UI/RevealType.vue";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
@@ -16,35 +19,40 @@ defineProps(
 
 <template>
   <section 
-    class="centered-intro" 
+    class="centered-intro block-padding" 
     :data-slice-type="slice.slice_type" 
     :data-slice-variation="slice.variation"
     data-parallax="trigger"
   >
     <div class="container">
-      <FeatureTag v-for="item in slice.primary.feature_tags" :key="item.key" :item="item" />
-
       <div class="centered-intro__inner">
-        <PrismicRichText :field="slice.primary.title" />
+        <FeatureTag v-for="(item, index) in slice.primary.feature_tags" :key="index" :item="item" />
+
+        <PrismicRichText 
+          :field="slice.primary.title" 
+          :components="{
+            heading2: RevealType
+          }" 
+        />
       </div>
     </div>
-
   </section>
 </template>
 
 <style lang="scss">
 .centered-intro {
-  position: relative;
   background: white;
 
   &__inner {
+    position: relative;
+
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding-block: 200px 100px;
+    padding-inline: 16px;
 
-    h2 {
+    .reveal-type {
       font-size: clamp(1.5rem, 0.7277rem + 3.1683vw, 3.5rem);
       font-weight: 700;
       line-height: 130%;
@@ -55,31 +63,37 @@ defineProps(
   }
 
   .feature-tag {
+    display: none;
+
     position: absolute;
     z-index: 5;
+
+    @media screen and (min-width: 992px) {
+      display: flex;
+    }
   }
 
   .feature-tag:nth-child(1) {
-    top: 150px;
-    left: 70px;
+    top: -50px;
+    left: 20px;
     rotate: -5deg;
   }
 
   .feature-tag:nth-child(2) {
-    top: 150px;
+    top: -50px;
     right: 50px;
     rotate: 2deg;
   }
 
   .feature-tag:nth-child(3) {
-    bottom: 50px;
-    left: 60px;
+    bottom: -50px;
+    left: 30px;
     rotate: -2deg;
   }
 
   .feature-tag:nth-child(4) {
-    bottom: 40px;
-    right: 75px;
+    bottom: -60px;
+    right: 0px;
     rotate: 7.5deg;
   }
 }
