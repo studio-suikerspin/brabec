@@ -41,7 +41,7 @@ defineProps(
 
 <style lang="scss">
 .centered-intro {
-  background: white;
+  background: var(--white);
 
   &__inner {
     position: relative;

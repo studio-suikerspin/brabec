@@ -28,9 +28,3 @@ onMounted(() => {
     <slot />
   </h2>
 </template>
-
-<style lang="scss">
-.reveal-type {
-
-}
-</style>

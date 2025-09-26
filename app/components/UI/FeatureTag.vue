@@ -33,7 +33,7 @@ const { item } = defineProps({
     padding-inline: 8px;
 
     border-radius: 100px;
-    background: var(--white, #FFF);
+    background: var(--white);
   }
 }
 </style>

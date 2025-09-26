@@ -29,8 +29,8 @@ defineProps({
   padding-inline: 12px;
   padding-block: 8px;
   gap: 10px;
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.30);
+  border-radius: var(--btn_border-radius);
+  background: var(--white-30);
 
   font-weight: 600;
   line-height: normal;
@@ -44,7 +44,7 @@ defineProps({
     justify-content: center;
     gap: 8px;
 
-    border-radius: 50px;
+    border-radius: var(--btn_border-radius);
   }
 
   &--primary {
@@ -53,7 +53,7 @@ defineProps({
 
   &--white {
     .btn__inner {
-      background: #fff;
+      background: var(--white);
     }
   }
 }

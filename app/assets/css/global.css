@@ -13,6 +13,8 @@
 
   --padding-block: 200px;
   --padding-block--sm: 100px;
+
+  --btn_border-radius: 50px;
 }
 
 @utility container {

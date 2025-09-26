@@ -35,7 +35,7 @@ onMounted(() => {
   position: absolute;
   top: 24px;
 
-  transition: background 50ms ease-out;
+  // transition: background 50ms ease-out;
 
   z-index: 10000;
 
