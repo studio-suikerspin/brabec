@@ -1,0 +1,61 @@
+{
+  "type": "SharedSlice",
+  "id": "process_steps",
+  "name": "ProcessSteps",
+  "variations": [
+    {
+      "id": "cards_with_numbers",
+      "name": "Cards with Numbers",
+      "description": "Displays each process step in a numbered card format with the option for step titles and descriptions, a heading, optional eyebrow, and a single call-to-action button.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow"
+          }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1",
+            "label": "Title"
+          }
+        },
+        "steps": {
+          "type": "Group",
+          "config": {
+            "label": "Steps",
+            "fields": {
+              "step_title": {
+                "type": "Text",
+                "config": {
+                  "label": "Step Title"
+                }
+              },
+              "step_description": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph,strong,em,hyperlink",
+                  "label": "Step Description"
+                }
+              }
+            }
+          }
+        },
+        "cta": {
+          "type": "Link",
+          "config": {
+            "label": "Call To Action",
+            "allowText": true,
+            "repeat": false,
+            "select": null
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

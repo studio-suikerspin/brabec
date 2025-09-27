@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { AgendaStatus } from "#components";
 import type { Content } from "@prismicio/client";
-import { gsap } from 'gsap';
 
+const { gsap } = useGsap()
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
@@ -40,13 +40,13 @@ onMounted(() => {
   <div class="hero__inner">
       <AppHeader />
 
-      <AgendaStatus :agenda="slice.primary.agenda[0]"/>
+      <AgendaStatus :agenda="slice.primary.agenda[0]" data-parallax="trigger" />
 
       <PrismicRichText :field="slice.primary.heading" />
 
       <PrismicRichText :field="slice.primary.subtitle" wrapper="div" class="hero__subtitle" />
 
-      <div class="button-group">
+      <div class="button-group" data-parallax="trigger">
         <template v-for="link in slice.primary.ctas" :key="link.key">
           <UIButton 
             :href="link.url ? link.url : undefined" 
@@ -95,7 +95,11 @@ onMounted(() => {
 
     padding-inline: 24px;
 
-    height: 90dvh;
+    height: 90svh;
+    min-height: 500px;
+
+    max-width: 1500px;
+    margin-inline: auto;
 
     @media screen and (min-width: 992px) {
       border-radius: 60px;

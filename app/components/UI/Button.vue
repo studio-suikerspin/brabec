@@ -48,7 +48,10 @@ defineProps({
   }
 
   &--primary {
-
+    .btn__inner {
+      background: var(--accent_primary);
+      color: var(--white);
+    }
   }
 
   &--white {

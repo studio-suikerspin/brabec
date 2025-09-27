@@ -8,5 +8,6 @@ export const components = defineSliceZoneComponents({
     () => import("./CenteredIntroWithFeatureTags/index.vue"),
   ),
   hero: defineAsyncComponent(() => import("./Hero/index.vue")),
+  process_steps: defineAsyncComponent(() => import("./ProcessSteps/index.vue")),
   rich_text: defineAsyncComponent(() => import("./RichText/index.vue")),
 });

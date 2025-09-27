@@ -1,0 +1,66 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "cards_with_numbers",
+		"primary": {
+			"eyebrow": {
+				"__TYPE__": "FieldContent",
+				"value": "report",
+				"type": "Text"
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Proud"
+						}
+					}
+				]
+			},
+			"steps": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"step_title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "long",
+									"type": "Text"
+								}
+							],
+							[
+								"step_description",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Cillum id enim nostrud veniam proident sunt. Cillum exercitation culpa veniam excepteur nulla amet. Officia commodo aliqua esse Lorem excepteur et dolore adipisicing mollit est ea officia in sit ea."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			},
+			"cta": {
+				"key": "23240dd0-a718-4660-8809-96992f9ae78d",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "above"
+				}
+			}
+		},
+		"items": []
+	}
+]
