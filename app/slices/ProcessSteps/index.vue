@@ -166,6 +166,10 @@ onMounted(() => {
           </div>
         </div>
       </div>
+
+      <UIButton :href="slice.primary.cta.link ? slice.primary.cta.link : undefined" variant="primary" classes="mx-auto">
+        {{ slice.primary.cta.text }}
+      </UIButton>
     </div>
   </section>
 </template>
@@ -183,19 +187,33 @@ onMounted(() => {
   }
 
   &__steps-wrap {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 2em;
-    grid-row-gap: 2em;
+    display: flex;
+    flex-direction: column;
+    column-gap: 24px;
+    row-gap: 24px;
     padding-block: 80px;
 
     flex: 1;
+
+    @media screen and (min-width: 650px) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (min-width: 992px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media screen and (min-width: 1280px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   .card__wrap {
     position: relative;
 
     .scribble {
+      display: none;
       position: absolute;
       z-index: 5;
 
@@ -214,10 +232,15 @@ onMounted(() => {
         top: 10%;
         left: 80%;
       }
+
+      @media screen and (min-width: 1200px) {
+        display: block;
+      }
     }
   }
 
   .process-card {
+    margin-inline: auto;
     max-width: 360px;
     min-width: 300px;
     width: 100%;
@@ -244,7 +267,7 @@ onMounted(() => {
     }
 
     &__title {
-      font-size: 21px;
+      font-size: clamp(1.125rem, 1.0526rem + 0.297vw, 1.3125rem);
       font-weight: 600;
       font-style: normal;
       line-height: normal;
@@ -252,7 +275,7 @@ onMounted(() => {
     }
 
     &__description {
-      font-size: 18px;
+      font-size: clamp(1rem, 0.9517rem + 0.198vw, 1.125rem);
       font-weight: 500;
       font-style: normal;
       line-height: normal;
