@@ -49,30 +49,27 @@ onMounted(() => {
   overflow: hidden;
 
   width: 100%;
-  max-width: 42em;
 
   display: flex;
-  gap: 20px;
+  gap: 56px;
 
   &__list {
     position: relative;
 
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 56px;
 
     flex: none;
   }
 
   &__item {
-    grid-column-gap: 1em;
-    grid-row-gap: 1em;
-    flex: 0;
-    align-items: center;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    padding-right: 1em;
     display: flex;
+    align-items: center;
+    gap: 56px;
+
+    padding-bottom: 1em;
+    padding-top: 1em;
   }
 
   &__item-p {
@@ -83,7 +80,7 @@ onMounted(() => {
   }
 
   &__item-svg {
-    width: 1em;
+    width: 24px;
   }
 }
 

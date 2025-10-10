@@ -63,8 +63,6 @@ defineProps(
   }
 
   .feature-tag {
-    display: none;
-
     position: absolute;
     z-index: 5;
 
@@ -74,27 +72,46 @@ defineProps(
   }
 
   .feature-tag:nth-child(1) {
-    top: -50px;
+    top: -75px;
     left: 20px;
     rotate: -5deg;
+
+    @media screen and (min-width: 768px) {
+      top: -50px;
+    }
   }
 
   .feature-tag:nth-child(2) {
-    top: -50px;
-    right: 50px;
+    top: -75px;
+    right: 20px;
     rotate: 2deg;
+
+    @media screen and (min-width: 768px) {
+      top: -50px;
+      right: 50px;
+    }
   }
 
   .feature-tag:nth-child(3) {
-    bottom: -50px;
+    bottom: -80px;  
     left: 30px;
     rotate: -2deg;
+
+    @media screen and (min-width: 768px) {
+      bottom: -50px;
+    }
   }
 
   .feature-tag:nth-child(4) {
-    bottom: -60px;
-    right: 0px;
+    bottom: -75px;
+    right: 20px;
     rotate: 7.5deg;
+
+    @media screen and (min-width: 768px) {
+      bottom: -60px;
+      right: 50px;
+      rotate: 7.5deg;
+    }
   }
 }
 </style>

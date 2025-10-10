@@ -16,13 +16,18 @@ const { item } = defineProps({
 
 <style lang="scss">
 .feature-tag {
-  padding-inline: 12px;
-  padding-block: 8px;
+  padding-inline: 8px;
+  padding-block: 4px;
   border-radius: 50px;
   background: rgba(255, 255, 255, 0.30);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 
   width: fit-content;
+
+  @media screen and (min-width: 992px) {
+    padding-inline: 12px;
+    padding-block: 8px;
+  }
 
   &__inner {
     display: flex;
