@@ -213,24 +213,49 @@ onMounted(() => {
     position: relative;
 
     .scribble {
-      display: none;
       position: absolute;
       z-index: 5;
 
       &--top {
-        top: -15%;
+        bottom: -20%;
         left: 50%;
+        rotate: 90deg;
+
+        @media screen and (min-width: 650px) {
+          top: -15%;
+          left: 50%;
+          rotate: 0deg;
+        }
       }
 
       &--bottom {
-        bottom: -20%;
-        left: 50%;
-        rotate: -10deg;
+        bottom: -25%;
+        left: 5%;
+        rotate: 55deg;
+
+        @media screen and (min-width: 650px) {
+          bottom: -20%;
+          left: -30%;
+          rotate: -45deg;
+        }
+
+        @media screen and (min-width: 992px) {
+          bottom: -15%;
+          left: 60%;
+          rotate: -10deg;
+        }
       }
 
       &--curly {
-        top: 10%;
-        left: 80%;
+        bottom: -20%;
+        left: 60%;
+        rotate: 95deg;
+
+        @media screen and (min-width: 650px) {
+          top: 20%;
+          left: 80%;
+          rotate: 0deg;
+        }
       }
 
       @media screen and (min-width: 1200px) {
@@ -241,16 +266,22 @@ onMounted(() => {
 
   .process-card {
     margin-inline: auto;
-    max-width: 360px;
+    max-width: 346px;
+    max-height: 450px;
     min-width: 300px;
     width: 100%;
     height: 100%;
-    aspect-ratio: 3 / 4;
+
+    @media screen and (min-width: 650px) {
+      aspect-ratio: 3 / 4;
+    }
 
     .card__inner {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
+      min-height: 330px;
     }
 
     &__number {
