@@ -62,8 +62,8 @@
 				"type": "Link",
 				"value": [
 					{
-						"__TYPE__": "LinkContent",
 						"key": "9e4bf0b7-5a1d-4762-a310-6acd6b62961c",
+						"__TYPE__": "LinkContent",
 						"value": {
 							"__TYPE__": "ExternalLink",
 							"url": "https://slicemachine.dev",
@@ -80,6 +80,17 @@
 					"url": "http://twitter.com",
 					"text": "fifteen"
 				}
+			},
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Exercitation nulla minim esse laborum reprehenderit do."
+						}
+					}
+				]
 			}
 		},
 		"items": []

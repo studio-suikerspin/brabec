@@ -60,6 +60,15 @@
             "allowTargetBlank": true
           }
         },
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Content",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,strong,em,hyperlink,embed,list-item,o-list-item"
+          }
+        },
         "cta_button": {
           "type": "Link",
           "config": {

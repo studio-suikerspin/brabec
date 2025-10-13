@@ -379,6 +379,16 @@ export interface FounderIntroSliceDefaultPrimary {
   >;
 
   /**
+   * Content field in *FounderIntro → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: founder_intro.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  content: prismic.RichTextField;
+
+  /**
    * CTA Button field in *FounderIntro → Default → Primary*
    *
    * - **Field Type**: Link
