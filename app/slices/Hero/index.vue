@@ -96,7 +96,8 @@ onMounted(() => {
     padding-inline: 24px;
 
     height: 80svh;
-    min-height: 500px;
+    min-height: 800px;
+    max-height: 90svh;
 
     max-width: 1500px;
     margin-inline: auto;
