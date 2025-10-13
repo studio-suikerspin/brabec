@@ -60,11 +60,19 @@ function makeMarqueeFixed() {
   if (!marquee || !section) return;
 
   window.addEventListener("scroll", () => {
-    if (section.getBoundingClientRect().top >= 0) {
-      marquee.classList.remove("image-stack__marquee--fixed");
-    } else {
-      marquee.classList.add("image-stack__marquee--fixed");
-    }
+    // const sectionTop = section.getBoundingClientRect().top > 0;
+    // const sectionBottom = section.getBoundingClientRect().bottom - window.innerHeight < 0;
+
+    // const inViewport = !sectionTop && sectionBottom;
+    // console.log({
+    //   top: sectionTop, bottom: sectionBottom, inView: inViewport
+    // });
+
+    // if (inViewport) {
+    //   marquee.classList.remove("image-stack__marquee--fixed");
+    // } else {
+    //   marquee.classList.add("image-stack__marquee--fixed");
+    // }
   })
 }
 
@@ -144,23 +152,21 @@ onMounted(() => {
 
 .image-stack__marquee {
   position: absolute;
-  top: 50vh;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   z-index: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-block: 50vh;
 
   width: 100%;
 
-  &--fixed {
-    position: fixed;
+  .marquee-css {
+    position: sticky;
     top: 50vh;
-    left: 0;
-    width: 100%;
-    height: 100vh;
   }
 
   .marquee-css__item-p {

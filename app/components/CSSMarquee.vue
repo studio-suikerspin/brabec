@@ -1,4 +1,11 @@
 <script setup>
+defineProps({
+  classes: {
+    type: String,
+    default: '',
+  },
+});
+
 function initCSSMarquee() {
   const pixelsPerSecond = 75; // Set the marquee speed (pixels per second)
   const marquees = document.querySelectorAll('[data-css-marquee]');
@@ -36,7 +43,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div data-css-marquee="" class="marquee-css">
+  <div data-css-marquee="" class="marquee-css {{ classes }}">
     <div data-css-marquee-list="" class="marquee-css__list">
       <slot />
     </div>

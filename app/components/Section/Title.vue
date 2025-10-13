@@ -4,11 +4,15 @@
 
 <style lang="scss">
   .section-title {
-    font-size: clamp(1.5rem, 0.7277rem + 3.1683vw, 3.5rem);
+    font-size: 35px;
     font-weight: 700;
     font-style: normal;
     line-height: normal;
     text-align: center;
     color: var(--black);
+
+    @media screen and (min-width: 992px) {
+      font-size: 56px;
+    }
   }
 </style>

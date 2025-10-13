@@ -1,0 +1,85 @@
+{
+  "type": "SharedSlice",
+  "id": "founder_intro",
+  "name": "FounderIntro",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Standard founder introduction with photo, bio, description, contact/social links, and CTA.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "portrait": {
+          "type": "Image",
+          "config": {
+            "label": "Portrait"
+          }
+        },
+        "name": {
+          "type": "Text",
+          "config": {
+            "label": "Name"
+          }
+        },
+        "role": {
+          "type": "Text",
+          "config": {
+            "label": "Role"
+          }
+        },
+        "intro_title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading1",
+            "label": "Intro Title"
+          }
+        },
+        "intro_text": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,strong,em,hyperlink",
+            "label": "Intro Text"
+          }
+        },
+        "contact_links": {
+          "type": "Link",
+          "config": {
+            "label": "Contact Links",
+            "placeholder": "",
+            "allowText": false,
+            "repeat": true,
+            "variants": [
+              "instagram",
+              "linkedin",
+              "email",
+              "phone"
+            ],
+            "select": null,
+            "allowTargetBlank": true
+          }
+        },
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Content",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,strong,em,hyperlink,embed,list-item,o-list-item"
+          }
+        },
+        "cta_button": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Button",
+            "allowText": true,
+            "repeat": false,
+            "select": null
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

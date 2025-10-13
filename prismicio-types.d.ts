@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>['id']];
 
 type PageDocumentDataSlicesSlice =
+  | FounderIntroSlice
   | ImageStackSlice
   | ProcessStepsSlice
   | CenteredIntroWithFeatureTagsSlice
@@ -303,6 +304,135 @@ type CenteredIntroWithFeatureTagsSliceVariation =
 export type CenteredIntroWithFeatureTagsSlice = prismic.SharedSlice<
   'centered_intro_with_feature_tags',
   CenteredIntroWithFeatureTagsSliceVariation
+>;
+
+/**
+ * Primary content in *FounderIntro → Default → Primary*
+ */
+export interface FounderIntroSliceDefaultPrimary {
+  /**
+   * Portrait field in *FounderIntro → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: founder_intro.default.primary.portrait
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  portrait: prismic.ImageField<never>;
+
+  /**
+   * Name field in *FounderIntro → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: founder_intro.default.primary.name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Role field in *FounderIntro → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: founder_intro.default.primary.role
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  role: prismic.KeyTextField;
+
+  /**
+   * Intro Title field in *FounderIntro → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: founder_intro.default.primary.intro_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  intro_title: prismic.RichTextField;
+
+  /**
+   * Intro Text field in *FounderIntro → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: founder_intro.default.primary.intro_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  intro_text: prismic.RichTextField;
+
+  /**
+   * Contact Links field in *FounderIntro → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: founder_intro.default.primary.contact_links
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  contact_links: prismic.Repeatable<
+    prismic.LinkField<
+      string,
+      string,
+      unknown,
+      prismic.FieldState,
+      'instagram' | 'linkedin' | 'email' | 'phone'
+    >
+  >;
+
+  /**
+   * Content field in *FounderIntro → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: founder_intro.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * CTA Button field in *FounderIntro → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: founder_intro.default.primary.cta_button
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta_button: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Default variation for FounderIntro Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Standard founder introduction with photo, bio, description, contact/social links, and CTA.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FounderIntroSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<FounderIntroSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FounderIntro*
+ */
+type FounderIntroSliceVariation = FounderIntroSliceDefault;
+
+/**
+ * FounderIntro Shared Slice
+ *
+ * - **API ID**: `founder_intro`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FounderIntroSlice = prismic.SharedSlice<
+  'founder_intro',
+  FounderIntroSliceVariation
 >;
 
 /**
@@ -681,6 +811,10 @@ declare module '@prismicio/client' {
       CenteredIntroWithFeatureTagsSliceDefaultPrimary,
       CenteredIntroWithFeatureTagsSliceVariation,
       CenteredIntroWithFeatureTagsSliceDefault,
+      FounderIntroSlice,
+      FounderIntroSliceDefaultPrimary,
+      FounderIntroSliceVariation,
+      FounderIntroSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimaryAgendaItem,
       HeroSliceDefaultPrimary,

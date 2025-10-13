@@ -7,6 +7,7 @@ export const components = defineSliceZoneComponents({
   centered_intro_with_feature_tags: defineAsyncComponent(
     () => import('./CenteredIntroWithFeatureTags/index.vue'),
   ),
+  founder_intro: defineAsyncComponent(() => import('./FounderIntro/index.vue')),
   hero: defineAsyncComponent(() => import('./Hero/index.vue')),
   image_stack: defineAsyncComponent(() => import('./ImageStack/index.vue')),
   process_steps: defineAsyncComponent(() => import('./ProcessSteps/index.vue')),
