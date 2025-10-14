@@ -1,0 +1,39 @@
+{
+  "type": "SharedSlice",
+  "id": "text_image_cta",
+  "name": "TextImageCta",
+  "variations": [
+    {
+      "id": "default_left_text_right_image",
+      "name": "Left Text, Right Image",
+      "description": "Displays text content and button on the left, with an image on the right.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,strong,em,hyperlink",
+            "label": "Content"
+          }
+        },
+        "cta": {
+          "type": "Link",
+          "config": {
+            "label": "Call to Action",
+            "allowText": true,
+            "repeat": false,
+            "select": null
+          }
+        },
+        "media": {
+          "type": "Image",
+          "config": {
+            "label": "Image"
+          }
+        }
+      }
+    }
+  ]
+}

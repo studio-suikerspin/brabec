@@ -12,4 +12,7 @@ export const components = defineSliceZoneComponents({
   image_stack: defineAsyncComponent(() => import('./ImageStack/index.vue')),
   process_steps: defineAsyncComponent(() => import('./ProcessSteps/index.vue')),
   rich_text: defineAsyncComponent(() => import('./RichText/index.vue')),
+  text_image_cta: defineAsyncComponent(
+    () => import('./TextImageCta/index.vue'),
+  ),
 });

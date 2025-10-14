@@ -131,10 +131,12 @@ defineProps(
     }
 
     .btn {
-      width: 100%;
-
-      &__inner {
+      @media screen and (max-width: 992px) {
         width: 100%;
+
+        &__inner {
+          width: 100%;
+        }
       }
     }
   }

@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>['id']];
 
 type PageDocumentDataSlicesSlice =
+  | TextImageCtaSlice
   | FounderIntroSlice
   | ImageStackSlice
   | ProcessStepsSlice
@@ -779,6 +780,72 @@ export type RichTextSlice = prismic.SharedSlice<
   RichTextSliceVariation
 >;
 
+/**
+ * Primary content in *TextImageCta → Left Text, Right Image → Primary*
+ */
+export interface TextImageCtaSliceDefaultLeftTextRightImagePrimary {
+  /**
+   * Content field in *TextImageCta → Left Text, Right Image → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image_cta.default_left_text_right_image.primary.content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Call to Action field in *TextImageCta → Left Text, Right Image → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image_cta.default_left_text_right_image.primary.cta
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Image field in *TextImageCta → Left Text, Right Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image_cta.default_left_text_right_image.primary.media
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  media: prismic.ImageField<never>;
+}
+
+/**
+ * Left Text, Right Image variation for TextImageCta Slice
+ *
+ * - **API ID**: `default_left_text_right_image`
+ * - **Description**: Displays text content and button on the left, with an image on the right.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TextImageCtaSliceDefaultLeftTextRightImage =
+  prismic.SharedSliceVariation<
+    'default_left_text_right_image',
+    Simplify<TextImageCtaSliceDefaultLeftTextRightImagePrimary>,
+    never
+  >;
+
+/**
+ * Slice variation for *TextImageCta*
+ */
+type TextImageCtaSliceVariation = TextImageCtaSliceDefaultLeftTextRightImage;
+
+/**
+ * TextImageCta Shared Slice
+ *
+ * - **API ID**: `text_image_cta`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TextImageCtaSlice = prismic.SharedSlice<
+  'text_image_cta',
+  TextImageCtaSliceVariation
+>;
+
 declare module '@prismicio/client' {
   interface CreateClient {
     (
@@ -835,6 +902,10 @@ declare module '@prismicio/client' {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      TextImageCtaSlice,
+      TextImageCtaSliceDefaultLeftTextRightImagePrimary,
+      TextImageCtaSliceVariation,
+      TextImageCtaSliceDefaultLeftTextRightImage,
     };
   }
 }
