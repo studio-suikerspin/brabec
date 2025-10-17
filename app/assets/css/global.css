@@ -1,13 +1,13 @@
 @import 'tailwindcss';
 
 :root {
-  --grey_block: #F2F0EF;
+  --grey_block: #f2f0ef;
 
-  --accent_primary: #FF6E02;
-  --accent_secondary: #153E5A;
+  --accent_primary: #ff6e02;
+  --accent_secondary: #153e5a;
 
-  --white: #FFFFFF;
-  --white-30: #FFFFFF4D;
+  --white: #ffffff;
+  --white-30: #ffffff4d;
   --black: #000000;
   --black-20: rgba(0, 0, 0, 0.2);
 
@@ -26,6 +26,10 @@
 
 .block-padding {
   padding-block: var(--padding-block--sm);
+
+  @media screen and (min-width: 992px) {
+    padding-block: var(--padding-block--sm);
+  }
 }
 
 .block-padding--start {
@@ -55,6 +59,12 @@ body {
   background: var(--white);
 }
 
-h1, h2, h3, h4, h5, h6, .title-font {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title-font {
   font-family: 'Inter', sans-serif;
 }

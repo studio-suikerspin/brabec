@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>['id']];
 
 type PageDocumentDataSlicesSlice =
+  | HeadlineFormImageSplitSlice
   | TextImageCtaSlice
   | FounderIntroSlice
   | ImageStackSlice
@@ -434,6 +435,101 @@ type FounderIntroSliceVariation = FounderIntroSliceDefault;
 export type FounderIntroSlice = prismic.SharedSlice<
   'founder_intro',
   FounderIntroSliceVariation
+>;
+
+/**
+ * Primary content in *ContactSection → Default → Primary*
+ */
+export interface HeadlineFormImageSplitSliceDefaultPrimary {
+  /**
+   * Subtitle field in *ContactSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: headline_form_image_split.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  subtitle: prismic.RichTextField;
+
+  /**
+   * Title field in *ContactSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: headline_form_image_split.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Form title field in *ContactSection → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: headline_form_image_split.default.primary.form_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  form_title: prismic.KeyTextField;
+
+  /**
+   * Form content field in *ContactSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: headline_form_image_split.default.primary.form_content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  form_content: prismic.RichTextField;
+
+  /**
+   * Button Text field in *ContactSection → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: headline_form_image_split.default.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Form image field in *ContactSection → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: headline_form_image_split.default.primary.form_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  form_image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for ContactSection Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Standard layout with content, form inputs, submit button, and image side by side.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeadlineFormImageSplitSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<HeadlineFormImageSplitSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ContactSection*
+ */
+type HeadlineFormImageSplitSliceVariation = HeadlineFormImageSplitSliceDefault;
+
+/**
+ * ContactSection Shared Slice
+ *
+ * - **API ID**: `headline_form_image_split`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeadlineFormImageSplitSlice = prismic.SharedSlice<
+  'headline_form_image_split',
+  HeadlineFormImageSplitSliceVariation
 >;
 
 /**
@@ -882,6 +978,10 @@ declare module '@prismicio/client' {
       FounderIntroSliceDefaultPrimary,
       FounderIntroSliceVariation,
       FounderIntroSliceDefault,
+      HeadlineFormImageSplitSlice,
+      HeadlineFormImageSplitSliceDefaultPrimary,
+      HeadlineFormImageSplitSliceVariation,
+      HeadlineFormImageSplitSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimaryAgendaItem,
       HeroSliceDefaultPrimary,

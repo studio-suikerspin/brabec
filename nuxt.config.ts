@@ -18,23 +18,21 @@ export default defineNuxtConfig({
         { name: 'format-detection', content: 'telephone=no' },
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    }
+    },
   },
 
   modules: ['@nuxt/eslint', '@nuxtjs/prismic', '@nuxt/fonts'],
 
   fonts: {
     defaults: {
-      weights: [400, 500, 600, 800]
-    }
+      weights: [400, 500, 600, 800],
+    },
   },
-  
+
   vite: {
-    plugins: [
-      tailwindcss()
-    ]
+    plugins: [tailwindcss()],
   },
-  
+
   css: ['~/assets/css/global.css', '~/assets/fonts/icons/iconly.min.css'],
 
   prismic: {
@@ -51,9 +49,9 @@ export default defineNuxtConfig({
           uid: 'home',
           path: '/',
         },
-      ]
-    }
+      ],
+    },
   },
 
   compatibilityDate: '2025-07-16',
-})
+});
