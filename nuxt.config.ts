@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/eslint', '@nuxtjs/prismic', '@nuxt/fonts'],
+  modules: ['@nuxt/eslint', '@nuxtjs/prismic', '@nuxt/fonts', '@nuxt/ui'],
 
   fonts: {
     defaults: {
@@ -51,6 +51,10 @@ export default defineNuxtConfig({
         },
       ],
     },
+  },
+
+  ui: {
+    colorMode: false,
   },
 
   compatibilityDate: '2025-07-16',

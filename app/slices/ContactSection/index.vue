@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { FormSubmitEvent } from '@nuxt/ui';
 import type { Content } from '@prismicio/client';
 
-// The array passed to `getSliceComponentProps` is purely optional.
-// Consider it as a visual hint for you when templating your slice.
+import * as z from 'zod';
+
 defineProps(
   getSliceComponentProps<Content.HeadlineFormImageSplitSlice>([
     'slice',
@@ -12,7 +13,63 @@ defineProps(
   ]),
 );
 
-const form = ref(null);
+const form = ref();
+
+const formSchema = z.object({
+  firstname: z
+    .string('Voornaam moet tussen 2 en 100 karakters lang zijn')
+    .min(2, 'Voornaam moet minimaal 2 karakters lang zijn')
+    .max(100, 'Voornaam moet maximaal 100 karakters lang zijn'),
+  lastname: z
+    .string('Achternaam moet tussen 2 en 100 karakters lang zijn')
+    .min(2, 'Achternaam moet minimaal 2 karakters lang zijn')
+    .max(100, 'Achternaam moet maximaal 100 karakters lang zijn'),
+  email: z.email('Email moet een geldig emailadres zijn'),
+  phone: z
+    .string('Telefoonnummer moet een geldig telefoonnummer zijn')
+    .min(10, 'Telefoonnummer moet minimaal 10 karakters lang zijn')
+    .max(20, 'Telefoonnummer moet maximaal 20 karakters lang zijn'),
+  message: z
+    .string('Bericht moet tussen 10 en 500 karakters lang zijn')
+    .min(10, 'Bericht moet minimaal 10 karakters lang zijn')
+    .max(500, 'Bericht moet maximaal 500 karakters lang zijn'),
+});
+
+type Schema = z.output<typeof formSchema>;
+
+const state = reactive<Partial<Schema>>({
+  firstname: undefined,
+  lastname: undefined,
+  email: undefined,
+  phone: undefined,
+  message: undefined,
+});
+
+const toast = useToast();
+
+async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
+  try {
+    const data = await $fetch('/api/contact', {
+      method: 'POST',
+      body: state,
+    });
+
+    console.log(data);
+
+    toast.add({
+      title: 'Success',
+      description: data.message,
+      color: 'success',
+    });
+    form.value.reset();
+  } catch (error) {
+    toast.add({
+      title: 'Error',
+      description: 'There was an error submitting the form: ' + error.message,
+      color: 'error',
+    });
+  }
+}
 </script>
 
 <template>
@@ -44,61 +101,79 @@ const form = ref(null);
             </div>
           </div>
 
-          <form
+          <UForm
             ref="form"
+            :state="state"
+            :schema="formSchema"
             class="contact-section__form"
+            @submit.prevent="handleSubmit"
           >
-            <div class="field-wrap field-wrap--half">
-              <input
-                id="name"
+            <UFormField
+              class="field-wrap field-wrap--half"
+              name="firstname"
+            >
+              <UInput
+                id="firstname"
+                v-model="state.firstname"
                 type="text"
-                name="name"
                 placeholder="Voornaam"
-                required
               />
-            </div>
+            </UFormField>
 
-            <div class="field-wrap field-wrap--half">
-              <input
+            <UFormField
+              class="field-wrap field-wrap--half"
+              name="lastname"
+            >
+              <UInput
                 id="lastname"
+                v-model="state.lastname"
                 type="text"
-                name="lastname"
                 placeholder="Achternaam"
-                required
               />
-            </div>
+            </UFormField>
 
-            <div class="field-wrap">
-              <input
+            <UFormField
+              class="field-wrap"
+              name="email"
+            >
+              <UInput
                 id="email"
+                v-model="state.email"
                 type="email"
-                name="email"
                 placeholder="Email"
-                required
               />
-            </div>
+            </UFormField>
 
-            <div class="field-wrap">
-              <input
+            <UFormField
+              class="field-wrap"
+              name="phone"
+            >
+              <UInput
                 id="phone"
+                v-model="state.phone"
                 type="tel"
-                name="phone"
                 placeholder="Telefoonnummer"
               />
-            </div>
+            </UFormField>
 
-            <div class="field-wrap">
-              <textarea
+            <UFormField
+              class="field-wrap"
+              name="message"
+            >
+              <UTextarea
                 id="message"
-                name="message"
+                v-model="state.message"
                 placeholder="Bericht"
               />
-            </div>
+            </UFormField>
 
-            <button class="contact-section__submit">
+            <button
+              type="submit"
+              class="contact-section__submit"
+            >
               {{ slice.primary.button_text }}
             </button>
-          </form>
+          </UForm>
         </div>
 
         <div class="image-wrap">
@@ -203,6 +278,14 @@ const form = ref(null);
       border-radius: 5px;
       border: 1px solid rgba(0, 0, 0, 0.2);
       background: rgba(0, 0, 0, 0.05);
+
+      &.ring-error {
+        border-color: var(--error);
+      }
+    }
+
+    .text-error {
+      color: var(--error);
     }
   }
 

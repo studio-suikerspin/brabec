@@ -11,6 +11,8 @@
   --black: #000000;
   --black-20: rgba(0, 0, 0, 0.2);
 
+  --error: #ff0000;
+
   --padding-block: 200px;
   --padding-block--sm: 100px;
 
