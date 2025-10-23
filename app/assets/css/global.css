@@ -13,12 +13,17 @@
 
   --error: #ff0000;
 
-  --padding-block: 200px;
-  --padding-block--sm: 100px;
+  --padding-block: 120px;
+  --padding-block--sm: 80px;
 
   --btn_border-radius: 50px;
 
   --card_border-radius: 16px;
+}
+
+body,
+html {
+  scroll-behavior: smooth;
 }
 
 @utility container {

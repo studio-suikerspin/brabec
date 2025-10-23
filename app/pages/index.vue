@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { components } from '~/slices'
+import { components } from '~/slices';
 
-const prismic = usePrismic()
+const prismic = usePrismic();
 const { data: page } = await useAsyncData('index', () =>
-  prismic.client.getByUID('page', 'home')
-)
+  prismic.client.getByUID('page', 'home'),
+);
+
+const { data: settings } = await useAsyncData('settings', () =>
+  prismic.client.getSingle('settings'),
+);
 
 useSeoMeta({
   title: page.value?.data.meta_title,
@@ -15,11 +19,14 @@ useSeoMeta({
 });
 </script>
 
-
 <template>
-  <SliceZone
-    wrapper="main"
-    :slices="page?.data.slices ?? []"
-    :components="components"
-  />
+  <main>
+    <AppHeader :navigation="settings?.data.navigation" />
+
+    <SliceZone
+      wrapper="main"
+      :slices="page?.data.slices ?? []"
+      :components="components"
+    />
+  </main>
 </template>

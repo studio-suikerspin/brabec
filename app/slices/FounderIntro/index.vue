@@ -16,6 +16,7 @@ defineProps(
 
 <template>
   <section
+    id="about-brabec"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
     class="block-padding founder-intro"

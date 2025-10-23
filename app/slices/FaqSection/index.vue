@@ -52,6 +52,7 @@ onMounted(() => {
 
 <template>
   <section
+    id="faq"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
     class="faq-section block-padding"

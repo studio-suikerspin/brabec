@@ -74,6 +74,7 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
 
 <template>
   <section
+    id="contact"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
     class="contact-section block-padding"

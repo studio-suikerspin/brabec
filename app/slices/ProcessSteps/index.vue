@@ -97,6 +97,7 @@ onMounted(() => {
 
 <template>
   <section
+    id="how-it-works"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
     class="process-steps block-padding"
@@ -167,7 +168,11 @@ onMounted(() => {
         </div>
       </div>
 
-      <UIButton :href="slice.primary.cta.link ? slice.primary.cta.link : undefined" variant="primary" classes="mx-auto">
+      <UIButton
+        :href="slice.primary.cta.link ? slice.primary.cta.link : undefined"
+        variant="primary"
+        classes="mx-auto"
+      >
         {{ slice.primary.cta.text }}
       </UIButton>
     </div>

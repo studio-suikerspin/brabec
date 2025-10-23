@@ -1,34 +1,40 @@
 <script setup lang="ts">
-import { AgendaStatus } from "#components";
-import type { Content } from "@prismicio/client";
+import { AgendaStatus } from '#components';
+import type { Content } from '@prismicio/client';
 
-const { gsap } = useGsap()
+const { gsap } = useGsap();
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 defineProps(
   getSliceComponentProps<Content.HeroSlice>([
-    "slice",
-    "index",
-    "slices",
-    "context",
+    'slice',
+    'index',
+    'slices',
+    'context',
   ]),
 );
 
-const bg1 = "linear-gradient(225deg, rgba(255,179,153,.8), rgba(255,179,153,0) 70.71%), linear-gradient(135deg, rgba(255,159,102,.7), rgba(255,159,102,0) 70.71%), linear-gradient(315deg, rgba(255,140,66,.9), rgba(255,140,66,0) 70.71%)";
-const bg2 = "linear-gradient(200deg, rgba(255,165,102,.7), rgba(255,165,102,0) 70.71%), linear-gradient(120deg, rgba(255,143,51,.8), rgba(255,143,51,0.1) 70.71%), linear-gradient(340deg, rgba(255,119,34,.6), rgba(255,119,34,0) 70.71%)";
+const bg1 =
+  'linear-gradient(225deg, rgba(255,179,153,.8), rgba(255,179,153,0) 70.71%), linear-gradient(135deg, rgba(255,159,102,.7), rgba(255,159,102,0) 70.71%), linear-gradient(315deg, rgba(255,140,66,.9), rgba(255,140,66,0) 70.71%)';
+const bg2 =
+  'linear-gradient(200deg, rgba(255,165,102,.7), rgba(255,165,102,0) 70.71%), linear-gradient(120deg, rgba(255,143,51,.8), rgba(255,143,51,0.1) 70.71%), linear-gradient(340deg, rgba(255,119,34,.6), rgba(255,119,34,0) 70.71%)';
 
 onMounted(() => {
-  gsap.fromTo(".hero__inner", {
-    background: bg1
-  }, {
-    ease: "none", 
-    duration: 6, 
-    background: bg2, 
-    // repeat: -1, 
-    yoyo: true
-  });
-})
+  gsap.fromTo(
+    '.hero__inner',
+    {
+      background: bg1,
+    },
+    {
+      ease: 'none',
+      duration: 6,
+      background: bg2,
+      // repeat: -1,
+      yoyo: true,
+    },
+  );
+});
 </script>
 
 <template>
@@ -37,38 +43,49 @@ onMounted(() => {
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
   >
-  <div class="hero__inner">
-      <AppHeader />
-
-      <AgendaStatus :agenda="slice.primary.agenda[0]" data-parallax="trigger" />
+    <div class="hero__inner">
+      <AgendaStatus
+        :agenda="slice.primary.agenda[0]"
+        data-parallax="trigger"
+      />
 
       <PrismicRichText :field="slice.primary.heading" />
 
-      <PrismicRichText :field="slice.primary.subtitle" wrapper="div" class="hero__subtitle" />
+      <PrismicRichText
+        :field="slice.primary.subtitle"
+        wrapper="div"
+        class="hero__subtitle"
+      />
 
-      <div class="button-group" data-parallax="trigger">
-        <template v-for="link in slice.primary.ctas" :key="link.key">
-          <UIButton 
-            :href="link.url ? link.url : undefined" 
-            variant="white">
+      <div
+        class="button-group"
+        data-parallax="trigger"
+      >
+        <template
+          v-for="link in slice.primary.ctas"
+          :key="link.key"
+        >
+          <UIButton
+            :href="link.url ? link.url : undefined"
+            variant="white"
+          >
             {{ link.text }}
           </UIButton>
         </template>
 
         <div class="trusted-by">
           <div class="avatars">
-
             <div class="circle-avatar">
-              <img src="https://api.samplefaces.com/face?width=100">
+              <img src="https://api.samplefaces.com/face?width=100" />
             </div>
             <div class="circle-avatar">
-              <img src="https://api.samplefaces.com/face?width=100">
+              <img src="https://api.samplefaces.com/face?width=100" />
             </div>
             <div class="circle-avatar">
-              <img src="https://api.samplefaces.com/face?width=100">
+              <img src="https://api.samplefaces.com/face?width=100" />
             </div>
             <div class="circle-avatar">
-              <img src="https://api.samplefaces.com/face?width=100">
+              <img src="https://api.samplefaces.com/face?width=100" />
             </div>
           </div>
           <span class="title">Trusted by leaders</span>
@@ -82,7 +99,7 @@ onMounted(() => {
 .hero {
   padding: 16px;
   background: var(--grey_block);
-  
+
   &__inner {
     display: flex;
     flex-direction: column;
@@ -146,7 +163,7 @@ onMounted(() => {
 
     .circle-avatar {
       margin-right: -5px;
-      
+
       width: 27px;
       height: 27px;
       border-radius: 100px;
