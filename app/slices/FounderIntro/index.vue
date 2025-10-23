@@ -19,6 +19,7 @@ defineProps(
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
     class="block-padding founder-intro"
+    data-parallax="trigger"
   >
     <div class="founder-intro__container">
       <div class="founder-intro__inner">
@@ -55,10 +56,12 @@ defineProps(
                   <PrismicLink
                     :field="link"
                     :class="link.variant"
-                    >
-                      <img :src="`/${link.variant}.svg`" class="w-5 h-5 inline-block mr-2">
-                    </PrismicLink
                   >
+                    <img
+                      :src="`/${link.variant}.svg`"
+                      class="w-5 h-5 inline-block mr-2"
+                    />
+                  </PrismicLink>
                 </template>
               </div>
 
@@ -121,7 +124,7 @@ defineProps(
     display: flex;
     flex-direction: column;
     gap: 40px;
-    
+
     @media screen and (min-width: 992px) {
       display: grid;
       grid-template-columns: 1fr 500px;
@@ -178,7 +181,7 @@ defineProps(
     display: flex;
     flex-direction: column;
     gap: 12px;
-  
+
     font-family: Inter;
 
     &__name {

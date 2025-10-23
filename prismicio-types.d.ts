@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>['id']];
 
 type PageDocumentDataSlicesSlice =
+  | FaqWithCtaCardSlice
   | HeadlineFormImageSplitSlice
   | TextImageCtaSlice
   | FounderIntroSlice
@@ -306,6 +307,164 @@ type CenteredIntroWithFeatureTagsSliceVariation =
 export type CenteredIntroWithFeatureTagsSlice = prismic.SharedSlice<
   'centered_intro_with_feature_tags',
   CenteredIntroWithFeatureTagsSliceVariation
+>;
+
+/**
+ * Item in *FaqSection → Default → Primary → FAQ Items*
+ */
+export interface FaqWithCtaCardSliceDefaultPrimaryFaqItemsItem {
+  /**
+   * Question field in *FaqSection → Default → Primary → FAQ Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.faq_items[].question
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  question: prismic.RichTextField;
+
+  /**
+   * Answer field in *FaqSection → Default → Primary → FAQ Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.faq_items[].answer
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  answer: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *FaqSection → Default → Primary*
+ */
+export interface FaqWithCtaCardSliceDefaultPrimary {
+  /**
+   * Subtitle field in *FaqSection → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * Title field in *FaqSection → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * CTA Image field in *FaqSection → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.cta_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  cta_image: prismic.ImageField<never>;
+
+  /**
+   * CTA Title field in *FaqSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.cta_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  cta_title: prismic.RichTextField;
+
+  /**
+   * CTA Description field in *FaqSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.cta_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  cta_description: prismic.RichTextField;
+
+  /**
+   * CTA Button field in *FaqSection → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.cta_button
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta_button: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * CTA link text field in *FaqSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.cta_link_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  cta_link_text: prismic.RichTextField;
+
+  /**
+   * CTA Trust Badges field in *FaqSection → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.cta_trust_badges
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  cta_trust_badges: prismic.ImageField<never>;
+
+  /**
+   * FAQ Items field in *FaqSection → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.faq_items[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  faq_items: prismic.GroupField<
+    Simplify<FaqWithCtaCardSliceDefaultPrimaryFaqItemsItem>
+  >;
+}
+
+/**
+ * Default variation for FaqSection Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Displays a two-column layout: one side for a highlighted call-to-action card and the other for an accordion list of FAQs.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FaqWithCtaCardSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<FaqWithCtaCardSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FaqSection*
+ */
+type FaqWithCtaCardSliceVariation = FaqWithCtaCardSliceDefault;
+
+/**
+ * FaqSection Shared Slice
+ *
+ * - **API ID**: `faq_with_cta_card`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FaqWithCtaCardSlice = prismic.SharedSlice<
+  'faq_with_cta_card',
+  FaqWithCtaCardSliceVariation
 >;
 
 /**
@@ -974,6 +1133,11 @@ declare module '@prismicio/client' {
       CenteredIntroWithFeatureTagsSliceDefaultPrimary,
       CenteredIntroWithFeatureTagsSliceVariation,
       CenteredIntroWithFeatureTagsSliceDefault,
+      FaqWithCtaCardSlice,
+      FaqWithCtaCardSliceDefaultPrimaryFaqItemsItem,
+      FaqWithCtaCardSliceDefaultPrimary,
+      FaqWithCtaCardSliceVariation,
+      FaqWithCtaCardSliceDefault,
       FounderIntroSlice,
       FounderIntroSliceDefaultPrimary,
       FounderIntroSliceVariation,

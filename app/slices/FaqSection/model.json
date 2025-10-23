@@ -1,0 +1,100 @@
+{
+  "type": "SharedSlice",
+  "id": "faq_with_cta_card",
+  "name": "FaqSection",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Displays a two-column layout: one side for a highlighted call-to-action card and the other for an accordion list of FAQs.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "subtitle": {
+          "type": "Text",
+          "config": {
+            "label": "Subtitle",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": ""
+          }
+        },
+        "cta_image": {
+          "type": "Image",
+          "config": {
+            "label": "CTA Image"
+          }
+        },
+        "cta_title": {
+          "type": "StructuredText",
+          "config": {
+            "single": "heading4",
+            "label": "CTA Title"
+          }
+        },
+        "cta_description": {
+          "type": "StructuredText",
+          "config": {
+            "multi": "paragraph,strong,em,hyperlink",
+            "label": "CTA Description"
+          }
+        },
+        "cta_button": {
+          "type": "Link",
+          "config": {
+            "label": "CTA Button",
+            "allowText": true,
+            "repeat": false,
+            "select": null
+          }
+        },
+        "cta_link_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "CTA link text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,hyperlink,strong,em"
+          }
+        },
+        "cta_trust_badges": {
+          "type": "Image",
+          "config": {
+            "label": "CTA Trust Badges"
+          }
+        },
+        "faq_items": {
+          "type": "Group",
+          "config": {
+            "label": "FAQ Items",
+            "fields": {
+              "question": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading3",
+                  "label": "Question"
+                }
+              },
+              "answer": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Answer",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

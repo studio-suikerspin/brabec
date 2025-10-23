@@ -6,22 +6,28 @@ onMounted(() => {
   window.addEventListener('scroll', () => {
     if (window.scrollY >= 50) {
       header.classList.add('header--fixed');
-    } 
-    
+    }
+
     if (window.scrollY < 50) {
       header.classList.remove('header--fixed');
     }
-  })
-})
+  });
+});
 </script>
 
 <template>
-  <header ref="headerRef" class="header">
+  <header
+    ref="headerRef"
+    class="header"
+  >
     <div class="container">
       <div class="header__inner">
         <h1 class="logo">BRABEC</h1>
-        
-        <a href="javascript:;" class="menu-trigger">
+
+        <a
+          href="javascript:;"
+          class="menu-trigger"
+        >
           <i class="icon-menu" />
         </a>
       </div>
@@ -91,11 +97,9 @@ onMounted(() => {
 
     font-size: 26px;
     line-height: 100%;
-    
+
     border-radius: 100px;
     background: var(--white-30);
   }
 }
-
-
 </style>

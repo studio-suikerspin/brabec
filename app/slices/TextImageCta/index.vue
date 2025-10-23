@@ -18,6 +18,7 @@ defineProps(
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
     class="block-padding text-image"
+    data-parallax="trigger"
   >
     <div class="text-image__container">
       <div class="text-image__inner">
@@ -77,15 +78,14 @@ defineProps(
   }
 
   .btn {
-      @media screen and (max-width: 992px) {
+    @media screen and (max-width: 992px) {
+      width: 100%;
+
+      &__inner {
         width: 100%;
-
-        &__inner {
-          width: 100%;
-        }
       }
-
     }
+  }
 
   .image-wrap {
     order: 1;

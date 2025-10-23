@@ -27,6 +27,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "faq_with_cta_card": {
+              "type": "SharedSlice"
+            },
             "headline_form_image_split": {
               "type": "SharedSlice"
             },
