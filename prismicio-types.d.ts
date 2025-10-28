@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>['id']];
 
 type PageDocumentDataSlicesSlice =
+  | CenteredHeroSlice
   | TestimonialCarouselSlice
   | FaqWithCtaCardSlice
   | HeadlineFormImageSplitSlice
@@ -152,6 +153,32 @@ export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, 'page', Lang>;
 
 /**
+ * Item in *Settings → Agenda*
+ */
+export interface SettingsDocumentDataAgendaItem {
+  /**
+   * Plekken beschikbaar? field in *Settings → Agenda*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: settings.agenda[].spots_available
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  spots_available: prismic.BooleanField;
+
+  /**
+   * Aantal beschikbare plekken field in *Settings → Agenda*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: 2
+   * - **API ID Path**: settings.agenda[].spots_available_count
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  spots_available_count: prismic.NumberField;
+}
+
+/**
  * Content for Settings documents
  */
 interface SettingsDocumentData {
@@ -206,6 +233,17 @@ interface SettingsDocumentData {
       'Link' | 'Button'
     >
   >;
+
+  /**
+   * Agenda field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.agenda[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  agenda: prismic.GroupField<Simplify<SettingsDocumentDataAgendaItem>>;
 }
 
 /**
@@ -224,7 +262,115 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = PageDocument | SettingsDocument;
+/**
+ * Content for Social links documents
+ */
+interface SocialLinksDocumentData {
+  /**
+   * Social links field in *Social links*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_links.social_links
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  social_links: prismic.Repeatable<
+    prismic.LinkField<
+      string,
+      string,
+      unknown,
+      prismic.FieldState,
+      'linkedin' | 'instagram' | 'email' | 'phone'
+    >
+  >;
+}
+
+/**
+ * Social links document from Prismic
+ *
+ * - **API ID**: `social_links`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type SocialLinksDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<SocialLinksDocumentData>,
+    'social_links',
+    Lang
+  >;
+
+export type AllDocumentTypes =
+  | PageDocument
+  | SettingsDocument
+  | SocialLinksDocument;
+
+/**
+ * Primary content in *Footer → Default → Primary*
+ */
+export interface CenteredHeroSliceDefaultPrimary {
+  /**
+   * Title field in *Footer → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: centered_hero.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Subtitle field in *Footer → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: centered_hero.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  subtitle: prismic.RichTextField;
+
+  /**
+   * Button field in *Footer → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: centered_hero.default.primary.button
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Default variation for Footer Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Standard variation with all elements vertically aligned center.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CenteredHeroSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<CenteredHeroSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Footer*
+ */
+type CenteredHeroSliceVariation = CenteredHeroSliceDefault;
+
+/**
+ * Footer Shared Slice
+ *
+ * - **API ID**: `centered_hero`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CenteredHeroSlice = prismic.SharedSlice<
+  'centered_hero',
+  CenteredHeroSliceVariation
+>;
 
 /**
  * Item in *CenteredIntroWithFeatureTags → Default → Primary → Feature Tags*
@@ -710,39 +856,18 @@ export type HeadlineFormImageSplitSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *Hero → Default → Primary → Agenda*
+ * Item in *Hero → Default → Primary → Trusted by avatars*
  */
-export interface HeroSliceDefaultPrimaryAgendaItem {
+export interface HeroSliceDefaultPrimaryTrustedByAvatarsItem {
   /**
-   * Plekken beschikbaar? field in *Hero → Default → Primary → Agenda*
+   * Avatar field in *Hero → Default → Primary → Trusted by avatars*
    *
-   * - **Field Type**: Boolean
+   * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: hero.default.primary.agenda[].open
-   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   * - **API ID Path**: hero.default.primary.trusted_by_avatars[].avatar
+   * - **Documentation**: https://prismic.io/docs/fields/image
    */
-  open: prismic.BooleanField;
-
-  /**
-   * Spots available field in *Hero → Default → Primary → Agenda*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: 2
-   * - **API ID Path**: hero.default.primary.agenda[].spots_available
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  spots_available: prismic.NumberField;
-
-  /**
-   * Spots text field in *Hero → Default → Primary → Agenda*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: plekken
-   * - **API ID Path**: hero.default.primary.agenda[].spots_text
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  spots_text: prismic.KeyTextField;
+  avatar: prismic.ImageField<never>;
 }
 
 /**
@@ -782,14 +907,16 @@ export interface HeroSliceDefaultPrimary {
   >;
 
   /**
-   * Agenda field in *Hero → Default → Primary*
+   * Trusted by avatars field in *Hero → Default → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.default.primary.agenda[]
+   * - **API ID Path**: hero.default.primary.trusted_by_avatars[]
    * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
-  agenda: prismic.GroupField<Simplify<HeroSliceDefaultPrimaryAgendaItem>>;
+  trusted_by_avatars: prismic.GroupField<
+    Simplify<HeroSliceDefaultPrimaryTrustedByAvatarsItem>
+  >;
 }
 
 /**
@@ -1257,7 +1384,14 @@ declare module '@prismicio/client' {
       PageDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
+      SettingsDocumentDataAgendaItem,
+      SocialLinksDocument,
+      SocialLinksDocumentData,
       AllDocumentTypes,
+      CenteredHeroSlice,
+      CenteredHeroSliceDefaultPrimary,
+      CenteredHeroSliceVariation,
+      CenteredHeroSliceDefault,
       CenteredIntroWithFeatureTagsSlice,
       CenteredIntroWithFeatureTagsSliceDefaultPrimaryFeatureTagsItem,
       CenteredIntroWithFeatureTagsSliceDefaultPrimary,
@@ -1278,7 +1412,7 @@ declare module '@prismicio/client' {
       HeadlineFormImageSplitSliceVariation,
       HeadlineFormImageSplitSliceDefault,
       HeroSlice,
-      HeroSliceDefaultPrimaryAgendaItem,
+      HeroSliceDefaultPrimaryTrustedByAvatarsItem,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,

@@ -21,7 +21,13 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/eslint', '@nuxtjs/prismic', '@nuxt/fonts', '@nuxt/ui'],
+  modules: [
+    '@nuxt/eslint',
+    '@nuxtjs/prismic',
+    '@nuxt/fonts',
+    '@nuxt/ui',
+    'lenis/nuxt',
+  ],
 
   fonts: {
     defaults: {

@@ -57,8 +57,6 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
       body: state,
     });
 
-    console.log(data);
-
     toast.add({
       title: 'Success',
       description: data.message,

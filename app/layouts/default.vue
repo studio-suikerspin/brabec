@@ -1,6 +1,5 @@
 <script setup>
-import Lenis from 'lenis';
-import 'lenis/dist/lenis.css';
+import { watchEffect } from 'vue';
 
 const prismic = usePrismic();
 const { gsap, ScrollTrigger } = useGsap();
@@ -98,20 +97,35 @@ function initGlobalParallax() {
   );
 }
 
-onMounted(() => {
-  const lenis = new Lenis();
+const lenisRef = ref(null);
+
+watchEffect((onInvalidate) => {
+  if (!lenisRef.value?.lenis) return;
+
+  const lenis = lenisRef.value.lenis;
+
   lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
+
+  function update(time) {
+    lenisRef.value.lenis.raf(time * 1000);
+  }
+  gsap.ticker.add(update);
+
   gsap.ticker.lagSmoothing(0);
 
-  // initGlobalParallax();
+  onInvalidate(() => {
+    gsap.ticker.remove(update);
+  });
+});
+
+onMounted(() => {
+  initGlobalParallax();
 });
 </script>
 
 <template>
   <div>
+    <VueLenis ref="lenisRef" root :options="{}" />
     <slot />
   </div>
 </template>

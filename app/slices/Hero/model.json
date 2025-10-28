@@ -41,33 +41,21 @@
             "repeat": true
           }
         },
-        "agenda": {
+        "trusted_by_avatars": {
           "type": "Group",
           "config": {
-            "label": "Agenda",
-            "repeat": false,
+            "label": "Trusted by avatars",
+            "repeat": true,
             "fields": {
-              "open": {
-                "type": "Boolean",
+              "avatar": {
+                "type": "Image",
                 "config": {
-                  "label": "Plekken beschikbaar?",
-                  "placeholder_false": "gesloten",
-                  "placeholder_true": "open",
-                  "default_value": false
-                }
-              },
-              "spots_available": {
-                "type": "Number",
-                "config": {
-                  "label": "Spots available",
-                  "placeholder": "2"
-                }
-              },
-              "spots_text": {
-                "type": "Text",
-                "config": {
-                  "label": "Spots text",
-                  "placeholder": "plekken"
+                  "label": "Avatar",
+                  "constraint": {
+                    "width": 200,
+                    "height": 200
+                  },
+                  "thumbnails": []
                 }
               }
             }

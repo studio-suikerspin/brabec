@@ -173,6 +173,8 @@ onMounted(() => {
 
 <style lang="scss">
 .process-steps {
+  overflow: hidden;
+
   &__inner {
     position: relative;
 

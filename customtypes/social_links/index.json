@@ -1,0 +1,23 @@
+{
+  "format": "custom",
+  "id": "social_links",
+  "label": "Social links",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "social_links": {
+        "type": "Link",
+        "config": {
+          "label": "Social links",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true,
+          "variants": ["linkedin", "instagram", "email", "phone"]
+        }
+      }
+    }
+  }
+}

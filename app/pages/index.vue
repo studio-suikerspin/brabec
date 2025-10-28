@@ -10,6 +10,14 @@ const { data: settings } = await useAsyncData('settings', () =>
   prismic.client.getSingle('settings'),
 );
 
+useState('settings', () => settings);
+
+const { data: socials } = await useAsyncData('socials', () =>
+  prismic.client.getSingle('social_links'),
+);
+
+useState('socials', () => socials);
+
 useSeoMeta({
   title: page.value?.data.meta_title,
   ogTitle: page.value?.data.meta_title,

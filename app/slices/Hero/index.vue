@@ -3,6 +3,7 @@ import { AgendaStatus } from '#components';
 import type { Content } from '@prismicio/client';
 
 const { gsap } = useGsap();
+const { data: settings } = useSettings().value;
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
@@ -44,10 +45,9 @@ onMounted(() => {
     :data-slice-variation="slice.variation"
   >
     <div class="hero__inner">
-      <AgendaStatus
-        :agenda="slice.primary.agenda[0]"
-        data-parallax="trigger"
-      />
+      <div v-if="settings">
+        <AgendaStatus :agenda="settings.agenda[0]" data-parallax="trigger" />
+      </div>
 
       <PrismicRichText :field="slice.primary.heading" />
 
@@ -57,39 +57,17 @@ onMounted(() => {
         class="hero__subtitle"
       />
 
-      <div
-        class="button-group"
-        data-parallax="trigger"
-      >
-        <template
-          v-for="link in slice.primary.ctas"
-          :key="link.key"
-        >
+      <div class="button-group" data-parallax="trigger">
+        <template v-for="link in slice.primary.ctas" :key="link.key">
           <UIButton
-            :href="link.url ? link.url : undefined"
+            :scroll-to="link.url ? link.url : undefined"
             variant="white"
           >
             {{ link.text }}
           </UIButton>
         </template>
 
-        <div class="trusted-by">
-          <div class="avatars">
-            <div class="circle-avatar">
-              <img src="https://api.samplefaces.com/face?width=100" />
-            </div>
-            <div class="circle-avatar">
-              <img src="https://api.samplefaces.com/face?width=100" />
-            </div>
-            <div class="circle-avatar">
-              <img src="https://api.samplefaces.com/face?width=100" />
-            </div>
-            <div class="circle-avatar">
-              <img src="https://api.samplefaces.com/face?width=100" />
-            </div>
-          </div>
-          <span class="title">Trusted by leaders</span>
-        </div>
+        <TrustedBy :avatars="slice.primary.trusted_by_avatars" />
       </div>
     </div>
   </section>

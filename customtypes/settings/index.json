@@ -42,6 +42,31 @@
           "repeat": true,
           "variants": ["Link", "Button"]
         }
+      },
+      "agenda": {
+        "type": "Group",
+        "config": {
+          "label": "Agenda",
+          "repeat": false,
+          "fields": {
+            "spots_available": {
+              "type": "Boolean",
+              "config": {
+                "label": "Plekken beschikbaar?",
+                "placeholder_false": "Nee",
+                "placeholder_true": "Ja",
+                "default_value": true
+              }
+            },
+            "spots_available_count": {
+              "type": "Number",
+              "config": {
+                "label": "Aantal beschikbare plekken",
+                "placeholder": "2"
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -44,33 +44,35 @@
 					}
 				]
 			},
-			"agenda": {
+			"trusted_by_avatars": {
 				"__TYPE__": "GroupContentType",
 				"value": [
 					{
 						"__TYPE__": "GroupItemContent",
 						"value": [
 							[
-								"open",
+								"avatar",
 								{
-									"__TYPE__": "BooleanContent",
-									"value": true
-								}
-							],
-							[
-								"spots_text",
-								{
-									"__TYPE__": "FieldContent",
-									"type": "Text",
-									"value": "plekken"
-								}
-							],
-							[
-								"spots_available",
-								{
-									"__TYPE__": "FieldContent",
-									"type": "Number",
-									"value": "2"
+									"__TYPE__": "ImageContent",
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1504198070170-4ca53bb1c1fa",
+										"width": 2747,
+										"height": 4120
+									},
+									"url": "https://images.unsplash.com/photo-1504198070170-4ca53bb1c1fa?rect=0%2C687%2C2747%2C2747&w=200&h=200",
+									"width": 200,
+									"height": 200,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 687
+										},
+										"background": "transparent"
+									},
+									"alt": "gate",
+									"thumbnails": {}
 								}
 							]
 						]

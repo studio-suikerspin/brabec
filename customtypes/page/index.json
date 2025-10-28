@@ -27,6 +27,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "centered_hero": {
+              "type": "SharedSlice"
+            },
             "testimonial_carousel": {
               "type": "SharedSlice"
             },
