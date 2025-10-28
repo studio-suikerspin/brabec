@@ -1,17 +1,18 @@
+<script setup>
+defineProps({
+  avatars: {
+    type: Array,
+    required: false,
+    default: () => [{ avatar: 'https://api.samplefaces.com/face?width=100' }],
+  },
+});
+</script>
+
 <template>
   <div class="trusted-by">
     <div class="avatars">
-      <div class="circle-avatar">
-        <img src="https://api.samplefaces.com/face?width=100" />
-      </div>
-      <div class="circle-avatar">
-        <img src="https://api.samplefaces.com/face?width=100" />
-      </div>
-      <div class="circle-avatar">
-        <img src="https://api.samplefaces.com/face?width=100" />
-      </div>
-      <div class="circle-avatar">
-        <img src="https://api.samplefaces.com/face?width=100" />
+      <div v-for="(item, index) in avatars" :key="index" class="circle-avatar">
+        <PrismicImage :field="item.avatar" />
       </div>
     </div>
     <span class="title">Trusted by leaders</span>

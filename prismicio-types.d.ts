@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>['id']];
 
 type PageDocumentDataSlicesSlice =
+  | TestimonialCarouselSlice
   | FaqWithCtaCardSlice
   | HeadlineFormImageSplitSlice
   | TextImageCtaSlice
@@ -335,28 +336,43 @@ export interface FaqWithCtaCardSliceDefaultPrimaryFaqItemsItem {
 }
 
 /**
+ * Item in *FaqSection → Default → Primary → CTA Trusted by avatars*
+ */
+export interface FaqWithCtaCardSliceDefaultPrimaryCtaTrustedByAvatarsItem {
+  /**
+   * Avatar field in *FaqSection → Default → Primary → CTA Trusted by avatars*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.cta_trusted_by_avatars[].avatar
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  avatar: prismic.ImageField<never>;
+}
+
+/**
  * Primary content in *FaqSection → Default → Primary*
  */
 export interface FaqWithCtaCardSliceDefaultPrimary {
   /**
    * Subtitle field in *FaqSection → Default → Primary*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: faq_with_cta_card.default.primary.subtitle
-   * - **Documentation**: https://prismic.io/docs/fields/text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  subtitle: prismic.KeyTextField;
+  subtitle: prismic.RichTextField;
 
   /**
    * Title field in *FaqSection → Default → Primary*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: faq_with_cta_card.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/fields/text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  title: prismic.KeyTextField;
+  title: prismic.RichTextField;
 
   /**
    * CTA Image field in *FaqSection → Default → Primary*
@@ -415,16 +431,6 @@ export interface FaqWithCtaCardSliceDefaultPrimary {
   cta_link_text: prismic.RichTextField;
 
   /**
-   * CTA Trust Badges field in *FaqSection → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: faq_with_cta_card.default.primary.cta_trust_badges
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  cta_trust_badges: prismic.ImageField<never>;
-
-  /**
    * FAQ Items field in *FaqSection → Default → Primary*
    *
    * - **Field Type**: Group
@@ -434,6 +440,18 @@ export interface FaqWithCtaCardSliceDefaultPrimary {
    */
   faq_items: prismic.GroupField<
     Simplify<FaqWithCtaCardSliceDefaultPrimaryFaqItemsItem>
+  >;
+
+  /**
+   * CTA Trusted by avatars field in *FaqSection → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: faq_with_cta_card.default.primary.cta_trusted_by_avatars[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  cta_trusted_by_avatars: prismic.GroupField<
+    Simplify<FaqWithCtaCardSliceDefaultPrimaryCtaTrustedByAvatarsItem>
   >;
 }
 
@@ -472,6 +490,26 @@ export type FaqWithCtaCardSlice = prismic.SharedSlice<
  */
 export interface FounderIntroSliceDefaultPrimary {
   /**
+   * Title field in *FounderIntro → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: founder_intro.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Subtitle field in *FounderIntro → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: founder_intro.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  subtitle: prismic.RichTextField;
+
+  /**
    * Portrait field in *FounderIntro → Default → Primary*
    *
    * - **Field Type**: Image
@@ -500,26 +538,6 @@ export interface FounderIntroSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   role: prismic.KeyTextField;
-
-  /**
-   * Intro Title field in *FounderIntro → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: founder_intro.default.primary.intro_title
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  intro_title: prismic.RichTextField;
-
-  /**
-   * Intro Text field in *FounderIntro → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: founder_intro.default.primary.intro_text
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  intro_text: prismic.RichTextField;
 
   /**
    * Contact Links field in *FounderIntro → Default → Primary*
@@ -918,14 +936,14 @@ export interface ProcessStepsSliceCardsWithNumbersPrimaryStepsItem {
  */
 export interface ProcessStepsSliceCardsWithNumbersPrimary {
   /**
-   * Eyebrow field in *ProcessSteps → Cards with Numbers → Primary*
+   * Subtitle field in *ProcessSteps → Cards with Numbers → Primary*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: process_steps.cards_with_numbers.primary.eyebrow
-   * - **Documentation**: https://prismic.io/docs/fields/text
+   * - **API ID Path**: process_steps.cards_with_numbers.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  eyebrow: prismic.KeyTextField;
+  subtitle: prismic.RichTextField;
 
   /**
    * Title field in *ProcessSteps → Cards with Numbers → Primary*
@@ -1036,6 +1054,118 @@ export type RichTextSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *TestimonialCarousel → Default → Primary → Testimonials*
+ */
+export interface TestimonialCarouselSliceDefaultPrimaryTestimonialsItem {
+  /**
+   * Testimonial Text field in *TestimonialCarousel → Default → Primary → Testimonials*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial_carousel.default.primary.testimonials[].text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Author Name field in *TestimonialCarousel → Default → Primary → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial_carousel.default.primary.testimonials[].author_name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author_name: prismic.KeyTextField;
+
+  /**
+   * Author Role field in *TestimonialCarousel → Default → Primary → Testimonials*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial_carousel.default.primary.testimonials[].author_role
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  author_role: prismic.KeyTextField;
+
+  /**
+   * Author Avatar field in *TestimonialCarousel → Default → Primary → Testimonials*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial_carousel.default.primary.testimonials[].author_avatar
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  author_avatar: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *TestimonialCarousel → Default → Primary*
+ */
+export interface TestimonialCarouselSliceDefaultPrimary {
+  /**
+   * Subtitle field in *TestimonialCarousel → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial_carousel.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  subtitle: prismic.RichTextField;
+
+  /**
+   * Title field in *TestimonialCarousel → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial_carousel.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Testimonials field in *TestimonialCarousel → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: testimonial_carousel.default.primary.testimonials[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  testimonials: prismic.GroupField<
+    Simplify<TestimonialCarouselSliceDefaultPrimaryTestimonialsItem>
+  >;
+}
+
+/**
+ * Default variation for TestimonialCarousel Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default carousel with main heading, subheading, horizontal testimonial navigation, and faces for navigation.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TestimonialCarouselSliceDefault = prismic.SharedSliceVariation<
+  'default',
+  Simplify<TestimonialCarouselSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TestimonialCarousel*
+ */
+type TestimonialCarouselSliceVariation = TestimonialCarouselSliceDefault;
+
+/**
+ * TestimonialCarousel Shared Slice
+ *
+ * - **API ID**: `testimonial_carousel`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TestimonialCarouselSlice = prismic.SharedSlice<
+  'testimonial_carousel',
+  TestimonialCarouselSliceVariation
+>;
+
+/**
  * Primary content in *TextImageCta → Left Text, Right Image → Primary*
  */
 export interface TextImageCtaSliceDefaultLeftTextRightImagePrimary {
@@ -1135,6 +1265,7 @@ declare module '@prismicio/client' {
       CenteredIntroWithFeatureTagsSliceDefault,
       FaqWithCtaCardSlice,
       FaqWithCtaCardSliceDefaultPrimaryFaqItemsItem,
+      FaqWithCtaCardSliceDefaultPrimaryCtaTrustedByAvatarsItem,
       FaqWithCtaCardSliceDefaultPrimary,
       FaqWithCtaCardSliceVariation,
       FaqWithCtaCardSliceDefault,
@@ -1166,6 +1297,11 @@ declare module '@prismicio/client' {
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      TestimonialCarouselSlice,
+      TestimonialCarouselSliceDefaultPrimaryTestimonialsItem,
+      TestimonialCarouselSliceDefaultPrimary,
+      TestimonialCarouselSliceVariation,
+      TestimonialCarouselSliceDefault,
       TextImageCtaSlice,
       TextImageCtaSliceDefaultLeftTextRightImagePrimary,
       TextImageCtaSliceVariation,

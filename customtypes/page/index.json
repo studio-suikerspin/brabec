@@ -27,6 +27,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "testimonial_carousel": {
+              "type": "SharedSlice"
+            },
             "faq_with_cta_card": {
               "type": "SharedSlice"
             },

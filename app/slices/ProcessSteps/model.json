@@ -11,10 +11,13 @@
       "imageUrl": "",
       "docURL": "...",
       "primary": {
-        "eyebrow": {
-          "type": "Text",
+        "subtitle": {
+          "type": "StructuredText",
           "config": {
-            "label": "Eyebrow"
+            "label": "Subtitle",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,hyperlink,strong,em"
           }
         },
         "title": {

@@ -9,6 +9,8 @@
   position: fixed;
   inset: 0;
   z-index: 10000;
+  width: fit-content;
+  height: fit-content;
 
   h1 {
     position: absolute;

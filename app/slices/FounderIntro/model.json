@@ -11,6 +11,24 @@
       "imageUrl": "",
       "docURL": "...",
       "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading2"
+          }
+        },
+        "subtitle": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subtitle",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,em,strong,hyperlink"
+          }
+        },
         "portrait": {
           "type": "Image",
           "config": {
@@ -27,20 +45,6 @@
           "type": "Text",
           "config": {
             "label": "Role"
-          }
-        },
-        "intro_title": {
-          "type": "StructuredText",
-          "config": {
-            "single": "heading1",
-            "label": "Intro Title"
-          }
-        },
-        "intro_text": {
-          "type": "StructuredText",
-          "config": {
-            "multi": "paragraph,strong,em,hyperlink",
-            "label": "Intro Text"
           }
         },
         "contact_links": {

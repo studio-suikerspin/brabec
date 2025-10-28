@@ -94,38 +94,6 @@
 					"text": "spin"
 				}
 			},
-			"cta_trust_badges": {
-				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1571126770897-2d612d1f7b89",
-					"width": 3456,
-					"height": 3456
-				},
-				"url": "https://images.unsplash.com/photo-1571126770897-2d612d1f7b89",
-				"width": 3456,
-				"height": 3456,
-				"edit": {
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					},
-					"background": "transparent"
-				},
-				"alt": "brought",
-				"credits": null,
-				"__TYPE__": "ImageContent"
-			},
-			"title": {
-				"__TYPE__": "FieldContent",
-				"value": "gently",
-				"type": "Text"
-			},
-			"subtitle": {
-				"__TYPE__": "FieldContent",
-				"value": "hunter",
-				"type": "Text"
-			},
 			"cta_link_text": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
@@ -134,6 +102,63 @@
 						"content": {
 							"text": "Proident enim culpa culpa."
 						}
+					}
+				]
+			},
+			"subtitle": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Sint labore velit ea tempor ex aliquip labore sint officia. Id enim dolor nulla qui quis dolore reprehenderit pariatur officia et consequat nostrud."
+						}
+					}
+				]
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Popular"
+						}
+					}
+				]
+			},
+			"cta_trusted_by_avatars": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"avatar",
+								{
+									"__TYPE__": "ImageContent",
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1607582278038-6bebbd4d7b72",
+										"width": 4010,
+										"height": 4010
+									},
+									"url": "https://images.unsplash.com/photo-1607582278038-6bebbd4d7b72?rect=0%2C0%2C4010%2C4010&w=200&h=200",
+									"width": 200,
+									"height": 200,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"alt": "iron",
+									"thumbnails": {}
+								}
+							]
+						]
 					}
 				]
 			}

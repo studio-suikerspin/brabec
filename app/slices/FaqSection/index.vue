@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { Content } from '@prismicio/client';
 
+import SectionEyebrow from '@/components/Section/Eyebrow.vue';
+import SectionTitle from '@/components/Section/Title.vue';
+
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 defineProps(
@@ -61,12 +64,14 @@ onMounted(() => {
     <div class="faq-section__container">
       <div class="faq-section__inner">
         <SectionHeader>
-          <SectionEyebrow>
-            {{ slice.primary.subtitle }}
-          </SectionEyebrow>
-          <SectionTitle>
-            {{ slice.primary.title }}
-          </SectionTitle>
+          <PrismicRichText
+            :field="slice.primary.subtitle"
+            :components="{ paragraph: SectionEyebrow }"
+          />
+          <PrismicRichText
+            :field="slice.primary.title"
+            :components="{ heading2: SectionTitle }"
+          />
         </SectionHeader>
 
         <div class="faq-section__content">
@@ -88,10 +93,7 @@ onMounted(() => {
                   </div>
                 </div>
 
-                <UIButton
-                  :href="slice.primary.cta_button.url"
-                  variant="white"
-                >
+                <UIButton :href="slice.primary.cta_button.url" variant="white">
                   {{ slice.primary.cta_button.text }}
                 </UIButton>
 
@@ -99,7 +101,7 @@ onMounted(() => {
                   <PrismicRichText :field="slice.primary.cta_link_text" />
                 </div>
 
-                <TrustedBy />
+                <TrustedBy :avatars="slice.primary.cta_trusted_by_avatars" />
               </div>
             </UICard>
           </div>

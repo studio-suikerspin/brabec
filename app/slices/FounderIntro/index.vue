@@ -2,6 +2,9 @@
 import { PrismicRichText } from '#components';
 import type { Content } from '@prismicio/client';
 
+import SectionEyebrow from '@/components/Section/Eyebrow.vue';
+import SectionTitle from '@/components/Section/Title.vue';
+
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 defineProps(
@@ -25,26 +28,22 @@ defineProps(
     <div class="founder-intro__container">
       <div class="founder-intro__inner">
         <SectionHeader data-parallax="target">
-          <SectionEyebrow v-if="slice.primary.intro_text.length">
-            {{ slice.primary.intro_text[0]?.text }}
-          </SectionEyebrow>
+          <PrismicRichText
+            :field="slice.primary.subtitle"
+            :components="{ paragraph: SectionEyebrow }"
+          />
 
-          <SectionTitle
-            v-if="slice.primary.intro_title.length"
-            class="mb-6"
-          >
-            <PrismicRichText :field="slice.primary.intro_title" />
-          </SectionTitle>
+          <PrismicRichText
+            :field="slice.primary.title"
+            :components="{ heading2: SectionTitle }"
+          />
         </SectionHeader>
 
         <div class="founder-intro__content">
           <div class="founder-intro__column">
             <div class="image-container">
               <div class="image-wrap">
-                <img
-                  :src="slice.primary.portrait.url"
-                  alt=""
-                />
+                <img :src="slice.primary.portrait.url" alt="" />
               </div>
             </div>
 
@@ -54,10 +53,7 @@ defineProps(
                   v-for="link in slice.primary.contact_links"
                   :key="link.key"
                 >
-                  <PrismicLink
-                    :field="link"
-                    :class="link.variant"
-                  >
+                  <PrismicLink :field="link" :class="link.variant">
                     <img
                       :src="`/${link.variant}.svg`"
                       class="w-5 h-5 inline-block mr-2"

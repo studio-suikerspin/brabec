@@ -12,17 +12,21 @@
       "docURL": "...",
       "primary": {
         "subtitle": {
-          "type": "Text",
+          "type": "StructuredText",
           "config": {
             "label": "Subtitle",
-            "placeholder": ""
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "paragraph,em,strong"
           }
         },
         "title": {
-          "type": "Text",
+          "type": "StructuredText",
           "config": {
             "label": "Title",
-            "placeholder": ""
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading2,em"
           }
         },
         "cta_image": {
@@ -63,12 +67,6 @@
             "single": "paragraph,hyperlink,strong,em"
           }
         },
-        "cta_trust_badges": {
-          "type": "Image",
-          "config": {
-            "label": "CTA Trust Badges"
-          }
-        },
         "faq_items": {
           "type": "Group",
           "config": {
@@ -88,6 +86,26 @@
                   "placeholder": "",
                   "allowTargetBlank": true,
                   "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+                }
+              }
+            }
+          }
+        },
+        "cta_trusted_by_avatars": {
+          "type": "Group",
+          "config": {
+            "label": "CTA Trusted by avatars",
+            "repeat": true,
+            "fields": {
+              "avatar": {
+                "type": "Image",
+                "config": {
+                  "label": "Avatar",
+                  "constraint": {
+                    "width": 200,
+                    "height": 200
+                  },
+                  "thumbnails": []
                 }
               }
             }

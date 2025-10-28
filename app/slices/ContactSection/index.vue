@@ -2,6 +2,9 @@
 import type { FormSubmitEvent } from '@nuxt/ui';
 import type { Content } from '@prismicio/client';
 
+import SectionEyebrow from '~/components/Section/Eyebrow.vue';
+import SectionTitle from '~/components/Section/Title.vue';
+
 import * as z from 'zod';
 
 defineProps(
@@ -82,14 +85,15 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
   >
     <div class="contact-section__container container">
       <SectionHeader>
-        <SectionEyebrow>
-          <PrismicRichText :field="slice.primary.subtitle" />
-        </SectionEyebrow>
-        <SectionTitle>
-          <div class="contact-section__title">
-            <PrismicRichText :field="slice.primary.title" />
-          </div>
-        </SectionTitle>
+        <PrismicRichText
+          :field="slice.primary.subtitle"
+          :components="{ paragraph: SectionEyebrow }"
+        />
+
+        <PrismicRichText
+          :field="slice.primary.title"
+          :components="{ heading2: SectionTitle }"
+        />
       </SectionHeader>
 
       <div class="contact-section__inner">
@@ -110,10 +114,7 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
             class="contact-section__form"
             @submit.prevent="handleSubmit"
           >
-            <UFormField
-              class="field-wrap field-wrap--half"
-              name="firstname"
-            >
+            <UFormField class="field-wrap field-wrap--half" name="firstname">
               <UInput
                 id="firstname"
                 v-model="state.firstname"
@@ -122,10 +123,7 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
               />
             </UFormField>
 
-            <UFormField
-              class="field-wrap field-wrap--half"
-              name="lastname"
-            >
+            <UFormField class="field-wrap field-wrap--half" name="lastname">
               <UInput
                 id="lastname"
                 v-model="state.lastname"
@@ -134,10 +132,7 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
               />
             </UFormField>
 
-            <UFormField
-              class="field-wrap"
-              name="email"
-            >
+            <UFormField class="field-wrap" name="email">
               <UInput
                 id="email"
                 v-model="state.email"
@@ -146,10 +141,7 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
               />
             </UFormField>
 
-            <UFormField
-              class="field-wrap"
-              name="phone"
-            >
+            <UFormField class="field-wrap" name="phone">
               <UInput
                 id="phone"
                 v-model="state.phone"
@@ -158,10 +150,7 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
               />
             </UFormField>
 
-            <UFormField
-              class="field-wrap"
-              name="message"
-            >
+            <UFormField class="field-wrap" name="message">
               <UTextarea
                 id="message"
                 v-model="state.message"
@@ -169,20 +158,14 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
               />
             </UFormField>
 
-            <button
-              type="submit"
-              class="contact-section__submit"
-            >
+            <button type="submit" class="contact-section__submit">
               {{ slice.primary.button_text }}
             </button>
           </UForm>
         </div>
 
         <div class="image-wrap">
-          <img
-            :src="slice.primary.form_image.url"
-            alt=""
-          />
+          <img :src="slice.primary.form_image.url" alt="" />
         </div>
       </div>
     </div>
@@ -197,10 +180,6 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
     gap: 40px;
 
     padding-inline: 16px;
-  }
-
-  &__title {
-    text-wrap: balance;
   }
 
   &__inner {

@@ -3,11 +3,6 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "cards_with_numbers",
 		"primary": {
-			"eyebrow": {
-				"__TYPE__": "FieldContent",
-				"value": "report",
-				"type": "Text"
-			},
 			"title": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
@@ -59,6 +54,17 @@
 					"url": "http://google.com",
 					"text": "above"
 				}
+			},
+			"subtitle": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ea duis sit excepteur ipsum elit culpa."
+						}
+					}
+				]
 			}
 		},
 		"items": []

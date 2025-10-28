@@ -103,14 +103,12 @@ onMounted(() => {
     class="process-steps block-padding"
     data-parallax="trigger"
   >
-    <div
-      class="process-steps__inner"
-      data-momentum-hover-init=""
-    >
+    <div class="process-steps__inner" data-momentum-hover-init="">
       <SectionHeader data-parallax="target">
-        <SectionEyebrow>
-          {{ slice.primary.eyebrow }}
-        </SectionEyebrow>
+        <PrismicRichText
+          :field="slice.primary.subtitle"
+          :components="{ paragraph: SectionEyebrow }"
+        />
 
         <PrismicRichText
           :field="slice.primary.title"
@@ -120,10 +118,7 @@ onMounted(() => {
         />
       </SectionHeader>
 
-      <div
-        class="process-steps__steps-wrap"
-        data-parallax="target"
-      >
+      <div class="process-steps__steps-wrap" data-parallax="target">
         <div
           v-for="(item, index) in slice.primary.steps"
           :key="index"
@@ -131,10 +126,7 @@ onMounted(() => {
           :style="`z-index: ${slice.primary.steps.length - index}`"
           data-momentum-hover-element=""
         >
-          <div
-            class="card__wrap"
-            data-momentum-hover-target=""
-          >
+          <div class="card__wrap" data-momentum-hover-target="">
             <UICard :classes="'process-card'">
               <span class="process-card__number title-font">
                 {{ index + 1 }}
