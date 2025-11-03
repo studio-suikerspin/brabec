@@ -7,12 +7,17 @@ defineProps({
 });
 
 const hamburgerNav = ref(null);
+const lenis = useLenis();
 
 const toggleNavigation = () => {
   hamburgerNav.value.dataset.navigationStatus =
     hamburgerNav.value.dataset.navigationStatus === 'active'
       ? 'closed'
       : 'active';
+};
+
+const scrollTo = (url) => {
+  lenis.value.scrollTo(url);
 };
 </script>
 
