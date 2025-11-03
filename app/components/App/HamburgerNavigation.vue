@@ -14,10 +14,18 @@ const toggleNavigation = () => {
     hamburgerNav.value.dataset.navigationStatus === 'active'
       ? 'closed'
       : 'active';
+
+  if (hamburgerNav.value.dataset.navigationStatus === 'active') {
+    lenis.value.stop();
+  } else {
+    lenis.value.start();
+  }
 };
 
 const scrollTo = (url) => {
+  lenis.value.start();
   lenis.value.scrollTo(url);
+  hamburgerNav.value.dataset.navigationStatus = 'closed';
 };
 </script>
 
