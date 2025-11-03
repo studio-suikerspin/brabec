@@ -1,7 +1,15 @@
+<script setup>
+const lenis = useLenis();
+
+const scrollTo = (url) => {
+  lenis.value.scrollTo(url);
+};
+</script>
+
 <template>
-  <div class="logo">
+  <a href="javascript:;" class="logo" @click="scrollTo('top')">
     <h1 class="logo">BRABEC</h1>
-  </div>
+  </a>
 </template>
 
 <style lang="scss">
