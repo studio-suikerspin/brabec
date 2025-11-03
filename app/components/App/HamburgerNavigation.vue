@@ -6,79 +6,33 @@ defineProps({
   },
 });
 
-function initScalingHamburgerNavigation() {
-  // Toggle Navigation
-  document
-    .querySelectorAll('[data-navigation-toggle="toggle"]')
-    .forEach((toggleBtn) => {
-      toggleBtn.addEventListener('click', () => {
-        const navStatusEl = document.querySelector('[data-navigation-status]');
-        if (!navStatusEl) return;
-        if (
-          navStatusEl.getAttribute('data-navigation-status') === 'not-active'
-        ) {
-          navStatusEl.setAttribute('data-navigation-status', 'active');
-          // If you use Lenis you can 'stop' Lenis here: Example Lenis.stop();
-        } else {
-          navStatusEl.setAttribute('data-navigation-status', 'not-active');
-          // If you use Lenis you can 'start' Lenis here: Example Lenis.start();
-        }
-      });
-    });
+const hamburgerNav = ref(null);
 
-  // Close Navigation
-  document
-    .querySelectorAll('[data-navigation-toggle="close"]')
-    .forEach((closeBtn) => {
-      closeBtn.addEventListener('click', () => {
-        const navStatusEl = document.querySelector('[data-navigation-status]');
-        if (!navStatusEl) return;
-        navStatusEl.setAttribute('data-navigation-status', 'not-active');
-        // If you use Lenis you can 'start' Lenis here: Example Lenis.start();
-      });
-    });
-
-  // Key ESC - Close Navigation
-  document.addEventListener('keydown', (e) => {
-    if (e.keyCode === 27) {
-      const navStatusEl = document.querySelector('[data-navigation-status]');
-      if (!navStatusEl) return;
-      if (navStatusEl.getAttribute('data-navigation-status') === 'active') {
-        navStatusEl.setAttribute('data-navigation-status', 'not-active');
-        // If you use Lenis you can 'start' Lenis here: Example Lenis.start();
-      }
-    }
-  });
-}
-
-const scrollTo = (url) => {
-  const element = document.querySelector(url);
-
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+const toggleNavigation = () => {
+  hamburgerNav.value.dataset.navigationStatus =
+    hamburgerNav.value.dataset.navigationStatus === 'active'
+      ? 'closed'
+      : 'active';
 };
-
-onMounted(() => {
-  initScalingHamburgerNavigation();
-});
 </script>
 
 <template>
-  <nav
-    data-navigation-status="not-active"
-    class="navigation"
-  >
-    <div
-      data-navigation-toggle="close"
-      class="navigation__dark-bg"
-    ></div>
-    <div class="hamburger-nav">
+  <div ref="hamburgerNav" class="hamburger-nav" data-navigation-status="closed">
+    <a
+      href="javascript:;"
+      class="hamburger-nav__toggle"
+      @click="toggleNavigation"
+    >
+      <div class="hamburger-nav__toggle-bar"></div>
+      <div class="hamburger-nav__toggle-bar"></div>
+    </a>
+
+    <nav class="hamburger-nav__menu">
       <div class="hamburger-nav__bg"></div>
       <div class="hamburger-nav__group">
         <p class="hamburger-nav__menu-p">Menu</p>
         <ul class="hamburger-nav__ul">
-          <div
+          <li
             v-for="(item, index) in navigation"
             :key="index"
             class="hamburger-nav__li"
@@ -95,214 +49,185 @@ onMounted(() => {
               </p>
               <div class="hamburger-nav__dot"></div>
             </a>
-          </div>
+          </li>
         </ul>
       </div>
-      <div
-        data-navigation-toggle="toggle"
-        class="hamburger-nav__toggle"
-      >
-        <div class="hamburger-nav__toggle-bar"></div>
-        <div class="hamburger-nav__toggle-bar"></div>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
+  <div class="hamburger-nav__bg-dark" @click="toggleNavigation"></div>
 </template>
 
-<style>
-.navigation {
-  z-index: 10000;
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-}
-
-.navigation__dark-bg {
-  transition: all 0.7s cubic-bezier(0.5, 0.5, 0, 1);
-  opacity: 0;
-  pointer-events: auto;
-  visibility: hidden;
-  background-color: #000;
-  position: absolute;
-  inset: 0;
-}
-
-[data-navigation-status='active'] .navigation__dark-bg {
-  opacity: 0.6;
-  visibility: visible;
-}
-
+<style lang="scss">
 .hamburger-nav {
-  border-radius: 1.5em;
-  position: absolute;
-  top: 2em;
-  right: 7.5%;
+  position: relative;
+  width: 50px;
+  height: 50px;
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    width: 50px;
+    height: 50px;
+    background-color: var(--white);
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+    transition: all 0.7s cubic-bezier(0.5, 0.5, 0, 1);
+  }
+
+  &__menu {
+    position: absolute;
+    border-radius: 1.5em;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &__group {
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.15) rotate(0.001deg);
+
+    position: relative;
+    display: flex;
+    padding: 24px 50px 20px 20px;
+    flex-flow: column;
+    transform-origin: 100% 0;
+    pointer-events: none;
+    grid-row-gap: 16px;
+    grid-column-gap: 16px;
+    transition:
+      all 0.5s cubic-bezier(0.5, 0.5, 0, 1),
+      transform 0.7s cubic-bezier(0.5, 0.5, 0, 1);
+  }
+
+  &__ul {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+    flex-flow: column;
+    margin: 0;
+  }
+
+  &__li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    transition: all 0.2s cubic-bezier(0.5, 0.5, 0, 1);
+
+    :hover {
+      opacity: 0.6;
+      transition: all 0.2s cubic-bezier(0.5, 0.5, 0, 1);
+    }
+  }
+
+  &__p {
+    white-space: nowrap;
+    font-size: 20px;
+  }
+
+  &__toggle {
+    position: absolute;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    color: var(--black);
+    background: var(--white);
+    transform: translate(0em, 0em) rotate(0.001deg);
+    transition: all 0.7s cubic-bezier(0.5, 0.5, 0, 1);
+
+    &-bar {
+      position: absolute;
+      display: block;
+      width: 40%;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--black);
+
+      transform: translateY(-0.15em) rotate(0.001deg);
+      transition: transform 0.7s cubic-bezier(0.5, 0.5, 0, 1);
+
+      &:nth-child(2) {
+        transition: transform 0.7s cubic-bezier(0.5, 0.5, 0, 1);
+        transform: translateY(0.15em) rotate(0.001deg);
+      }
+    }
+  }
+
+  &[data-navigation-status='active'] {
+    .hamburger-nav__bg {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+    }
+
+    .hamburger-nav__group {
+      transform: scale(1) rotate(0.001deg);
+      pointer-events: auto;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hamburger-nav__toggle {
+      transform: translate(-8px, 8px) rotate(0deg);
+    }
+
+    .hamburger-nav__toggle-bar {
+      transform: translateY(0em) rotate(45deg);
+
+      &:nth-child(2) {
+        transform: translateY(0em) rotate(-45deg);
+      }
+    }
+  }
+
+  &:not([data-navigation-status='active']) .hamburger-nav__toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+
+    .hamburger-nav__toggle-bar {
+      transform: translateY(0.15em) rotate(0);
+
+      &:nth-child(2) {
+        transform: translateY(-0.15em) rotate(0);
+      }
+    }
+  }
 }
 
-.hamburger-nav__bg {
-  transition: all 0.7s cubic-bezier(0.5, 0.5, 0, 1);
-  background-color: var(--white);
-  border-radius: 1.75em;
-  width: 3.5em;
-  height: 3.5em;
-  position: absolute;
+.hamburger-nav__bg-dark {
+  position: fixed;
   top: 0;
-  right: 0;
-}
-
-[data-navigation-status='active'] .hamburger-nav__bg {
+  left: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  transition: opacity 0.7s cubic-bezier(0.5, 0.5, 0, 1);
+  pointer-events: none;
 }
 
-.hamburger-nav__group {
-  transition:
-    all 0.5s cubic-bezier(0.5, 0.5, 0, 1),
-    transform 0.7s cubic-bezier(0.5, 0.5, 0, 1);
-  grid-column-gap: 1em;
-  grid-row-gap: 1em;
-  pointer-events: auto;
-  transform-origin: 100% 0;
-  flex-flow: column;
-  padding: 2.25em 2.5em 2em 2em;
-  display: flex;
-  position: relative;
-  transform: scale(0.15) rotate(0.001deg);
-  opacity: 0;
-  visibility: hidden;
-}
-
-[data-navigation-status='active'] .hamburger-nav__group {
-  transform: scale(1) rotate(0.001deg);
+[data-navigation-status='active'] ~ .hamburger-nav__bg-dark {
   opacity: 1;
   visibility: visible;
-}
-
-.hamburger-nav__menu-p {
-  opacity: 0.5;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 0;
-  font-family:
-    RM Mono,
-    Arial,
-    sans-serif;
-  font-size: 1em;
-  font-weight: 400;
-}
-
-.hamburger-nav__ul {
-  grid-column-gap: 0.375em;
-  grid-row-gap: 0.375em;
-  flex-flow: column;
-  margin-top: 0;
-  margin-bottom: 0;
-  padding: 0;
-  display: flex;
-  position: relative;
-}
-
-.hamburger-nav__li {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.hamburger-nav__a {
-  color: #131313;
-  justify-content: space-between;
-  align-items: center;
-  text-decoration: none;
-  display: flex;
-}
-
-.hamburger-nav__a[aria-current] .hamburger-nav__p {
-  opacity: 0.33;
-}
-
-.hamburger-nav__p {
-  white-space: nowrap;
-  margin-bottom: 0;
-  padding-right: 1.25em;
-  font-size: 2em;
-}
-
-.hamburger-nav__dot {
-  transition: all 0.7s cubic-bezier(0.5, 0.5, 0, 1);
-  background-color: currentColor;
-  border-radius: 50%;
-  flex-shrink: 0;
-  width: 0.5em;
-  height: 0.5em;
-  transform: scale(0) rotate(0.001deg);
-  opacity: 0.5;
-}
-
-.hamburger-nav__a[aria-current] .hamburger-nav__dot {
-  transform: scale(1) rotate(0.001deg);
-  opacity: 1;
-}
-
-.hamburger-nav:has(.hamburger-nav__a:hover) .hamburger-nav__dot {
-  transform: scale(0) rotate(0.001deg);
-}
-
-.hamburger-nav .hamburger-nav__a:hover .hamburger-nav__dot {
-  transform: scale(1) rotate(0.001deg);
-  opacity: 0.25;
-}
-
-.hamburger-nav__toggle {
-  transition: transform 0.7s cubic-bezier(0.5, 0.5, 0, 1);
   pointer-events: auto;
   cursor: pointer;
-  border-radius: 50%;
-  justify-content: center;
-  align-items: center;
-  width: 3.5em;
-  height: 3.5em;
-  display: flex;
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(0em, 0em) rotate(0.001deg);
+  transition:
+    opacity 0.7s cubic-bezier(0.5, 0.5, 0, 1),
+    visibility 0s 0s;
 }
 
-[data-navigation-status='active'] .hamburger-nav__toggle {
-  transform: translate(-1em, 1em) rotate(0.001deg);
-}
-
-.hamburger-nav__toggle-bar {
-  transition: transform 0.7s cubic-bezier(0.5, 0.5, 0, 1);
-  background-color: #131313;
-  width: 40%;
-  height: 0.125em;
-  position: absolute;
-  transform: translateY(-0.15em) rotate(0.001deg);
-}
-
-.hamburger-nav__toggle:hover .hamburger-nav__toggle-bar {
-  transform: translateY(0.15em) rotate(0.001deg);
-}
-
-[data-navigation-status='active']
-  .hamburger-nav__toggle
-  .hamburger-nav__toggle-bar {
-  transform: translateY(0em) rotate(45deg);
-}
-
-.hamburger-nav__toggle .hamburger-nav__toggle-bar:nth-child(2) {
-  transition: transform 0.7s cubic-bezier(0.5, 0.5, 0, 1);
-  transform: translateY(0.15em) rotate(0.001deg);
-}
-
-.hamburger-nav__toggle:hover .hamburger-nav__toggle-bar:nth-child(2) {
-  transform: translateY(-0.15em) rotate(0.001deg);
-}
-
-[data-navigation-status='active']
-  .hamburger-nav__toggle
-  .hamburger-nav__toggle-bar:nth-child(2) {
-  transform: translateY(0em) rotate(-45deg);
+[data-navigation-status='closed'] ~ .hamburger-nav__bg-dark {
+  opacity: 0;
 }
 </style>
