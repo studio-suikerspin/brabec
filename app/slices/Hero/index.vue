@@ -76,7 +76,7 @@ onMounted(() => {
 <style lang="scss">
 .hero {
   padding: 16px;
-  background: var(--grey_block);
+  height: 100svh;
 
   &__inner {
     display: flex;
@@ -85,17 +85,15 @@ onMounted(() => {
     justify-content: center;
 
     gap: 24px;
+    height: 100%;
 
     border-radius: 30px;
 
     padding-inline: 24px;
 
-    height: 80svh;
-    min-height: 800px;
-    max-height: 90svh;
-
     max-width: 1500px;
     margin-inline: auto;
+    box-shadow: 0 32px 56px -12px rgba(113, 113, 113, 0.25);
 
     @media screen and (min-width: 992px) {
       border-radius: 60px;
