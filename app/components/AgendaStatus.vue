@@ -6,8 +6,15 @@ const { agenda } = defineProps({
   },
 });
 
+const agendaStatus = computed(() => {
+  if (agenda.spots_available) {
+    return 'open';
+  }
+  return 'gesloten';
+});
+
 const spotsText = computed(() => {
-  if (agenda.spots_available === 1) {
+  if (agenda.spots_available_count === 1) {
     return 'plek';
   }
   return 'plekken';
@@ -20,7 +27,11 @@ const spotsText = computed(() => {
       :class="`agenda__dot agenda__dot--${agenda.spots_available ? 'green' : 'red'}`"
     />
     <div class="agenda__text">
-      Agenda open - {{ agenda.spots_available_count }} {{ spotsText }}
+      Agenda {{ agendaStatus }}
+      <template v-if="agenda.spots_available">
+        - {{ agenda.spots_available_count }}
+        {{ spotsText }}
+      </template>
     </div>
   </div>
 </template>
@@ -48,6 +59,10 @@ const spotsText = computed(() => {
 
     &--green {
       background: #10b70b;
+    }
+
+    &--red {
+      background: #ff0000;
     }
   }
 }
