@@ -22,7 +22,7 @@ defineProps(
     id="about-brabec"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class="block-padding founder-intro"
+    class="founder-intro"
     data-parallax="trigger"
   >
     <div class="founder-intro__container">

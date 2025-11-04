@@ -17,7 +17,7 @@ defineProps(
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class="block-padding text-image"
+    class="text-image"
     data-parallax="trigger"
   >
     <div class="text-image__container">
