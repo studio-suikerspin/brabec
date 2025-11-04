@@ -1,38 +1,42 @@
 <script setup lang="ts">
-import type { Content } from "@prismicio/client";
+import type { Content } from '@prismicio/client';
 
 // Components
-import FeatureTag from "~/components/UI/FeatureTag.vue";
-import RevealType from "~/components/UI/RevealType.vue";
+import FeatureTag from '~/components/UI/FeatureTag.vue';
+import RevealType from '~/components/UI/RevealType.vue';
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 defineProps(
   getSliceComponentProps<Content.CenteredIntroWithFeatureTagsSlice>([
-    "slice",
-    "index",
-    "slices",
-    "context",
+    'slice',
+    'index',
+    'slices',
+    'context',
   ]),
 );
 </script>
 
 <template>
-  <section 
-    class="centered-intro block-padding" 
-    :data-slice-type="slice.slice_type" 
+  <section
+    class="centered-intro block-padding"
+    :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
     data-parallax="trigger"
   >
     <div class="container">
       <div class="centered-intro__inner">
-        <FeatureTag v-for="(item, index) in slice.primary.feature_tags" :key="index" :item="item" />
+        <FeatureTag
+          v-for="(item, index) in slice.primary.feature_tags"
+          :key="index"
+          :item="item"
+        />
 
-        <PrismicRichText 
-          :field="slice.primary.title" 
+        <PrismicRichText
+          :field="slice.primary.title"
           :components="{
-            heading2: RevealType
-          }" 
+            heading2: RevealType,
+          }"
         />
       </div>
     </div>
@@ -77,7 +81,7 @@ defineProps(
     rotate: -5deg;
 
     @media screen and (min-width: 768px) {
-      top: -50px;
+      top: -70px;
     }
   }
 
@@ -87,18 +91,18 @@ defineProps(
     rotate: 2deg;
 
     @media screen and (min-width: 768px) {
-      top: -50px;
+      top: -70px;
       right: 50px;
     }
   }
 
   .feature-tag:nth-child(3) {
-    bottom: -80px;  
+    bottom: -80px;
     left: 30px;
     rotate: -2deg;
 
     @media screen and (min-width: 768px) {
-      bottom: -50px;
+      bottom: -70px;
     }
   }
 
@@ -108,7 +112,7 @@ defineProps(
     rotate: 7.5deg;
 
     @media screen and (min-width: 768px) {
-      bottom: -60px;
+      bottom: -80px;
       right: 50px;
       rotate: 7.5deg;
     }

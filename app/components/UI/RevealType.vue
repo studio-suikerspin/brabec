@@ -1,9 +1,11 @@
 <script setup>
-const { gsap, SplitText } = useGsap()
+const { gsap, SplitText } = useGsap();
 const revealTypeRef = ref(null);
 
 onMounted(() => {
-  const revealTypeSplit = SplitText.create(revealTypeRef.value, { type: 'words' });
+  const revealTypeSplit = SplitText.create(revealTypeRef.value, {
+    type: 'words',
+  });
   gsap.from(revealTypeSplit.words, {
     duration: 0.1,
     autoAlpha: 0.2,
@@ -11,12 +13,12 @@ onMounted(() => {
     stagger: 0.1,
     scrollTrigger: {
       trigger: '.reveal-type',
-      scrub: 0.1,
-      start: "top 90%",
-      end: "top 70%"
-    }
-  })
-})
+      scrub: 0.5,
+      start: 'top 75%',
+      end: 'top 40%',
+    },
+  });
+});
 </script>
 
 <template>
