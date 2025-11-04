@@ -320,11 +320,16 @@ onMounted(() => {
   }
 
   &__item-bottom {
-    transition: grid-template-rows 0.6s cubic-bezier(0.625, 0.05, 0, 1);
     grid-template-rows: 0fr;
     display: grid;
     position: relative;
     overflow: hidden;
+    scale: 0;
+    transform: translate(-8px 0);
+    transition:
+      scale 0.6s cubic-bezier(0.625, 0.05, 0, 1),
+      transform 0.4s cubic-bezier(0.625, 0.05, 0, 1),
+      grid-template-rows 0.5s cubic-bezier(0.625, 0.05, 0, 1);
   }
 
   &__item-bottom-wrap {
@@ -365,6 +370,10 @@ onMounted(() => {
   [data-accordion-status='active'] {
     .accordion-css__item-bottom {
       grid-template-rows: 1fr;
+      scale: 1;
+      transition:
+        scale 0.6s cubic-bezier(0.625, 0.05, 0, 1),
+        grid-template-rows 0.5s cubic-bezier(0.625, 0.05, 0, 1);
     }
 
     .accordion-css__item-icon {
