@@ -59,10 +59,7 @@ onMounted(() => {
 
       <div class="button-group" data-parallax="trigger">
         <template v-for="link in slice.primary.ctas" :key="link.key">
-          <UIButton
-            :scroll-to="link.url ? link.url : undefined"
-            variant="white"
-          >
+          <UIButton :scroll-to="link.url ? link.url : null" variant="white">
             {{ link.text }}
           </UIButton>
         </template>

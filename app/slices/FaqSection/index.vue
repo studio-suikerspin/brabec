@@ -93,7 +93,10 @@ onMounted(() => {
                   </div>
                 </div>
 
-                <UIButton :href="slice.primary.cta_button.url" variant="white">
+                <UIButton
+                  :scroll-to="slice.primary.cta_button.url"
+                  variant="white"
+                >
                   {{ slice.primary.cta_button.text }}
                 </UIButton>
 

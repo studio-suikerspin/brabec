@@ -58,17 +58,14 @@ function initElasticPulseButton() {
   });
 }
 
-// const lenis = useLenis();
+const lenis = useLenis();
 
-// const handleScrollTo = (id) => {
-//   console.log('Scrolling to:', id);
-//   console.log(lenis);
-//   lenis.scrollTo(id);
-//   // const element = document.getElementById(id);
-//   // if (element) {
-//   //   element.scrollIntoView({ behavior: 'smooth' });
-//   // }
-// };
+const handleScrollTo = (id) => {
+  console.log('scrolling to', scrollTo);
+  if (!lenis.value) return;
+
+  lenis.value.scrollTo(id);
+};
 
 onMounted(() => {
   initElasticPulseButton();
@@ -80,6 +77,7 @@ onMounted(() => {
     :class="`btn btn--${variant} ${classes}`"
     data-elastic-pulse-btn
     :href="href"
+    @click="scrollTo ? handleScrollTo(scrollTo) : null"
   >
     <div class="btn__inner" data-elastic-pulse-target>
       <slot />

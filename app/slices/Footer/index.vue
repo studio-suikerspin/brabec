@@ -38,9 +38,7 @@ defineProps(
         </div>
 
         <UIButton
-          :href="
-            slice.primary.button.url ? slice.primary.button.url : undefined
-          "
+          :scrollTo="slice.primary.button.url ? slice.primary.button.url : null"
           variant="white"
         >
           {{ slice.primary.button.text }}
