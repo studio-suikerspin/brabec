@@ -7,7 +7,7 @@ onMounted(() => {
     type: 'words',
   });
   gsap.from(revealTypeSplit.words, {
-    duration: 0.1,
+    duration: 0.2,
     autoAlpha: 0.2,
     y: 5,
     stagger: 0.1,
