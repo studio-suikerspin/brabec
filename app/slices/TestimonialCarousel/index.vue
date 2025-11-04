@@ -3,7 +3,7 @@ import type { Content } from '@prismicio/client';
 
 import { SectionEyebrow, SectionTitle } from '#components';
 
-defineProps(
+const props = defineProps(
   getSliceComponentProps<Content.TestimonialCarouselSlice>([
     'slice',
     'index',
@@ -11,6 +11,32 @@ defineProps(
     'context',
   ]),
 );
+
+// Ref to the slider wrapper component
+const sliderWrapperRef = ref(null);
+
+// Track active testimonial index (mapped to original array, not tripled)
+const activeTestimonialIndex = ref(0);
+
+// Navigate to a specific testimonial when avatar is clicked
+function navigateToTestimonial(avatarIndex: number) {
+  if (!sliderWrapperRef.value) return;
+
+  // Calculate the center set index (since testimonials are tripled)
+  const totalTestimonials = props.slice.primary.testimonials.length;
+  const centerSetStartIndex = totalTestimonials;
+  const targetSlideIndex = centerSetStartIndex + avatarIndex;
+
+  // Call the goToSlide method exposed by SliderWrapper
+  sliderWrapperRef.value.goToSlide(targetSlideIndex);
+}
+
+// Handle active slide change from slider
+function handleActiveSlideChange(slideIndex: number) {
+  const totalTestimonials = props.slice.primary.testimonials.length;
+  // Map slide index back to original testimonial index
+  activeTestimonialIndex.value = slideIndex % totalTestimonials;
+}
 </script>
 
 <template>
@@ -36,14 +62,26 @@ defineProps(
       <div class="testimonials__main-wrap">
         <div class="avatars flex items-center gap-4 mx-auto">
           <UIAvatar
-            v-for="({ author_avatar }, index) in slice.primary.testimonials"
-            :key="index"
+            v-for="({ author_avatar }, avatarIndex) in slice.primary
+              .testimonials"
+            :key="avatarIndex"
+            :class="[
+              'testimonials__avatar',
+              {
+                'testimonials__avatar--active':
+                  avatarIndex === activeTestimonialIndex,
+              },
+            ]"
+            @click="navigateToTestimonial(avatarIndex)"
           >
             <PrismicImage :field="author_avatar" />
           </UIAvatar>
         </div>
 
-        <SliderWrapper>
+        <SliderWrapper
+          ref="sliderWrapperRef"
+          @active-slide-change="handleActiveSlideChange"
+        >
           <SliderItem
             v-for="(item, index) in [
               ...slice.primary.testimonials,
@@ -151,6 +189,33 @@ defineProps(
 
     @media screen and (min-width: 992px) {
       gap: 40px;
+    }
+  }
+
+  &__avatar {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &--active {
+      opacity: 1;
+      transform: scale(1.1);
+      box-shadow: 0 0 0 3px var(--accent_primary);
+      border-radius: 50%;
+
+      &:hover {
+        opacity: 1;
+        transform: scale(1.1);
+      }
     }
   }
 

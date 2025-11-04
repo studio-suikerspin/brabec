@@ -8,6 +8,19 @@ defineProps({
   },
 });
 
+const emit = defineEmits(['activeSlideChange']);
+
+// Store slider state for external access
+const sliderState = ref({
+  snapPoints: [],
+  activeIndex: 0,
+  track: null,
+  items: [],
+  centerIndex: 0,
+  updateStatus: null,
+  isReady: false,
+});
+
 function initBasicGSAPSlider() {
   document.querySelectorAll('[data-gsap-slider-init]').forEach((root) => {
     if (root._sliderDraggable) root._sliderDraggable.kill();
@@ -130,7 +143,15 @@ function initBasicGSAPSlider() {
     const setX = gsap.quickSetter(track, 'x', 'px');
     let collectionRect = collection.getBoundingClientRect();
 
+    // Store in sliderState for external access
+    sliderState.value.snapPoints = snapPoints;
+    sliderState.value.activeIndex = activeIndex;
+    sliderState.value.track = track;
+    sliderState.value.items = items;
+    sliderState.value.centerIndex = centerIndex;
+
     function updateStatus(x) {
+      const previousActiveIndex = activeIndex;
       if (x > maxX || x < minX) {
         return;
       }
@@ -144,6 +165,12 @@ function initBasicGSAPSlider() {
         }
       });
       activeIndex = snapPoints.indexOf(closest);
+
+      // Update sliderState and emit event if changed
+      sliderState.value.activeIndex = activeIndex;
+      if (previousActiveIndex !== activeIndex) {
+        emit('activeSlideChange', activeIndex);
+      }
 
       // Calculate viewport center
       const viewportCenter = collectionRect.width / 2;
@@ -256,12 +283,48 @@ function initBasicGSAPSlider() {
       },
     })[0];
 
+    // Store updateStatus for external access
+    sliderState.value.updateStatus = updateStatus;
+
     // Initial state - start at center
     const initialX = snapPoints[centerIndex];
     setX(initialX);
     updateStatus(initialX);
+
+    // Emit initial active slide change event
+    emit('activeSlideChange', activeIndex);
+
+    // Mark slider as ready
+    sliderState.value.isReady = true;
   });
 }
+
+// Method to navigate to a specific slide index
+function goToSlide(targetIndex) {
+  if (!sliderState.value.isReady) {
+    console.warn('Slider not ready yet');
+    return;
+  }
+
+  const { snapPoints, track, updateStatus } = sliderState.value;
+
+  if (targetIndex < 0 || targetIndex >= snapPoints.length) {
+    console.warn('Invalid slide index:', targetIndex);
+    return;
+  }
+
+  gsap.to(track, {
+    duration: 0.4,
+    x: snapPoints[targetIndex],
+    onUpdate: () => updateStatus(gsap.getProperty(track, 'x')),
+  });
+}
+
+// Expose methods for parent components
+defineExpose({
+  goToSlide,
+  sliderState,
+});
 
 // Debouncer: For resizing the window
 function debounceOnWidthChange(fn, ms) {

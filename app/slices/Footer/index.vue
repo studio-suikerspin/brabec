@@ -112,9 +112,10 @@ defineProps(
     font-weight: 600;
     line-height: 100%;
     letter-spacing: -1.296px;
+    text-wrap: balance;
 
     @media screen and (min-width: 992px) {
-      font-size: clamp(2.25rem, 0.4158rem + 7.5248vw, 7rem);
+      font-size: clamp(3rem, 0.7778rem + 7.1111vw, 7rem);
     }
   }
 
@@ -139,7 +140,9 @@ defineProps(
     padding-block: 40px;
 
     display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 16px;
     justify-content: space-between;
 
     @media screen and (min-width: 992px) {
