@@ -125,7 +125,8 @@ function initBasicGSAPSlider() {
       snapPoints.push(centerOffset - i * slideW);
     }
 
-    let activeIndex = 0;
+    const centerIndex = Math.floor((items.length - 1) / 2);
+    let activeIndex = centerIndex;
     const setX = gsap.quickSetter(track, 'x', 'px');
     let collectionRect = collection.getBoundingClientRect();
 
@@ -255,9 +256,10 @@ function initBasicGSAPSlider() {
       },
     })[0];
 
-    // Initial state
-    setX(centerOffset);
-    updateStatus(centerOffset);
+    // Initial state - start at center
+    const initialX = snapPoints[centerIndex];
+    setX(initialX);
+    updateStatus(initialX);
   });
 }
 
