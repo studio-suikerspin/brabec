@@ -20,7 +20,7 @@ defineProps(
   <footer
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class="footer block-padding--end"
+    class="footer"
   >
     <div class="footer__container">
       <div class="footer__inner">
@@ -41,7 +41,7 @@ defineProps(
           :href="
             slice.primary.button.url ? slice.primary.button.url : undefined
           "
-          variant="full"
+          variant="white"
         >
           {{ slice.primary.button.text }}
         </UIButton>
@@ -146,6 +146,8 @@ defineProps(
     justify-content: space-between;
 
     @media screen and (min-width: 992px) {
+      flex-direction: row;
+      gap: unset;
       padding-inline: 80px;
     }
 

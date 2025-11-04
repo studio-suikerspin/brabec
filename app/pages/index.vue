@@ -28,7 +28,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <main>
+  <main class="main">
     <AppHeader :navigation="settings?.data.navigation" />
 
     <SliceZone
@@ -38,3 +38,9 @@ useSeoMeta({
     />
   </main>
 </template>
+
+<style lang="scss">
+.main {
+  padding-block-end: 24px;
+}
+</style>
