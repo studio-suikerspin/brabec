@@ -34,10 +34,7 @@ defineProps(
         </div>
 
         <div class="image-wrap">
-          <img
-            :src="slice.primary.media.url"
-            alt=""
-          />
+          <img :src="slice.primary.media.url" alt="" />
         </div>
       </div>
     </div>
@@ -65,12 +62,16 @@ defineProps(
   }
 
   &__content {
+    position: sticky;
+    top: 48px;
+
     order: 2;
     display: flex;
     flex-direction: column;
     gap: 24px;
 
     max-width: 530px;
+    height: fit-content;
 
     @media screen and (min-width: 992px) {
       order: 1;
