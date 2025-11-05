@@ -21,11 +21,6 @@
   --card_border-radius: 16px;
 }
 
-body,
-html {
-  scroll-behavior: smooth;
-}
-
 @utility container {
   margin-inline: auto;
   max-width: 1200px;

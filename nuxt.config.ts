@@ -13,9 +13,9 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Prismic + Nuxt Minimal Starter',
+      title: 'BRABEC - Digitaliseren voor iedereen',
       htmlAttrs: {
-        lang: 'en',
+        lang: 'nl',
       },
       meta: [
         { charset: 'utf-8' },
@@ -38,6 +38,9 @@ export default defineNuxtConfig({
           href: '/apple-touch-icon.png',
         },
         { rel: 'manifest', href: '/site.webmanifest' },
+        // Preconnect to Prismic CDN for faster resource loading
+        { rel: 'preconnect', href: 'https://images.prismic.io' },
+        { rel: 'dns-prefetch', href: 'https://images.prismic.io' },
       ],
     },
   },
@@ -82,6 +85,17 @@ export default defineNuxtConfig({
 
   ui: {
     colorMode: false,
+  },
+
+  routeRules: {
+    // Cache static assets aggressively
+    '/assets/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    // Cache API responses briefly
+    '/api/**': { cache: { maxAge: 60 } },
+  },
+
+  nitro: {
+    compressPublicAssets: true,
   },
 
   compatibilityDate: '2025-07-16',

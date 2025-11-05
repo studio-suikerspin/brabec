@@ -8,18 +8,35 @@ defineProps({
   },
 });
 
+let rafId = null;
+
 const checkHeaderPosition = () => {
   const header = headerRef.value;
+  if (!header) return;
+
   if (window.scrollY >= 36) {
     header.classList.add('header--fixed');
   } else {
     header.classList.remove('header--fixed');
   }
+  rafId = null;
+};
+
+const handleScroll = () => {
+  if (rafId) return;
+  rafId = requestAnimationFrame(checkHeaderPosition);
 };
 
 onMounted(() => {
   checkHeaderPosition();
-  window.addEventListener('scroll', checkHeaderPosition);
+  window.addEventListener('scroll', handleScroll, { passive: true });
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll);
+  if (rafId) {
+    cancelAnimationFrame(rafId);
+  }
 });
 </script>
 

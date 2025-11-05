@@ -4,16 +4,19 @@ import { watchEffect } from 'vue';
 const prismic = usePrismic();
 const { gsap, ScrollTrigger } = useGsap();
 
-const { data: settings } = await useAsyncData(() =>
+const { data: settings } = await useAsyncData('settings', () =>
   prismic.client.getSingle('settings'),
 );
 
+// Store in global state for other components to access
+const globalSettings = useState('settings', () => settings.value);
+
 useSeoMeta({
-  title: settings.value?.data.site_title,
-  ogTitle: settings.value?.data.site_title,
-  description: settings.value?.data.meta_description,
-  ogDescription: settings.value?.data.meta_description,
-  ogImage: computed(() => prismic.asImageSrc(settings.value?.data.meta_image)),
+  title: globalSettings.value?.data.site_title,
+  ogTitle: globalSettings.value?.data.site_title,
+  description: globalSettings.value?.data.meta_description,
+  ogDescription: globalSettings.value?.data.meta_description,
+  ogImage: computed(() => prismic.asImageSrc(globalSettings.value?.data.meta_image)),
 });
 
 function initGlobalParallax() {
@@ -125,23 +128,6 @@ onMounted(() => {
 
 <template>
   <div>
-    <Head>
-      <link
-        rel="icon"
-        type="image/png"
-        href="/favicon-96x96.png"
-        sizes="96x96"
-      />
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-      <link rel="shortcut icon" href="/favicon.ico" />
-      <link
-        rel="apple-touch-icon"
-        sizes="180x180"
-        href="/apple-touch-icon.png"
-      />
-      <meta name="apple-mobile-web-app-title" content="BRABEC" />
-      <link rel="manifest" href="/site.webmanifest" />
-    </Head>
     <VueLenis ref="lenisRef" root :options="{}" />
     <slot />
   </div>

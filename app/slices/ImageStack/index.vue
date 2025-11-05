@@ -53,26 +53,8 @@ function initStackingCardsParallax() {
   });
 }
 
-function makeMarqueeFixed() {
-  const section = document.querySelector('.image-stack');
-  const marquee = document.querySelector('.image-stack__marquee');
-
-  if (!marquee || !section) return;
-
-  window.addEventListener('scroll', () => {
-    // const sectionTop = section.getBoundingClientRect().top > 0;
-    // const sectionBottom = section.getBoundingClientRect().bottom - window.innerHeight < 0;
-    // if (inViewport) {
-    //   marquee.classList.remove("image-stack__marquee--fixed");
-    // } else {
-    //   marquee.classList.add("image-stack__marquee--fixed");
-    // }
-  });
-}
-
 onMounted(() => {
   initStackingCardsParallax();
-  makeMarqueeFixed();
 });
 </script>
 
@@ -91,11 +73,7 @@ onMounted(() => {
             data-stacking-cards-item
             class="stacking-cards__item"
           >
-            <img
-              :src="image.image.url"
-              :alt="image.image.alt || ''"
-              data-stacking-cards-img
-            />
+            <PrismicImage :field="image.image" data-stacking-cards-img />
           </div>
         </div>
       </div>
@@ -155,7 +133,7 @@ onMounted(() => {
     position: sticky;
     top: 0;
 
-    img {
+    [data-stacking-cards-img] {
       max-width: 80vw;
       width: 400px;
       aspect-ratio: 3 / 4;

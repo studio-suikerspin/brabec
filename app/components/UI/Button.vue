@@ -1,6 +1,4 @@
 <script setup>
-import Lenis from 'lenis';
-
 defineProps({
   href: {
     type: String,
@@ -61,7 +59,6 @@ function initElasticPulseButton() {
 const lenis = useLenis();
 
 const handleScrollTo = (id) => {
-  console.log('scrolling to', scrollTo);
   if (!lenis.value) return;
 
   lenis.value.scrollTo(id);

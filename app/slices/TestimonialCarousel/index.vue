@@ -82,36 +82,18 @@ function handleActiveSlideChange(slideIndex: number) {
           ref="sliderWrapperRef"
           @active-slide-change="handleActiveSlideChange"
         >
+          <!-- Triple the testimonials array for seamless infinite scroll -->
           <SliderItem
-            v-for="(item, index) in [
-              ...slice.primary.testimonials,
-              ...slice.primary.testimonials,
-              ...slice.primary.testimonials,
-            ]"
-            :key="index"
+            v-for="(item, index) in slice.primary.testimonials.concat(
+              slice.primary.testimonials,
+              slice.primary.testimonials
+            )"
+            :key="`testimonial-${index}`"
             :classes="['testimonials__carousel-item']"
           >
             <div class="testimonials__card-wrap">
-              <svg
-                class="testimonials__card-corner testimonials__card-corner--top-left"
-                xmlns="http://www.w3.org/2000/svg"
-                width="33"
-                height="30"
-                viewBox="0 0 33 30"
-                fill="none"
-              >
-                <path d="M33 0.5H0.5V29.5" stroke="#FF6E02" />
-              </svg>
-              <svg
-                class="testimonials__card-corner testimonials__card-corner--top-right"
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="33"
-                viewBox="0 0 30 33"
-                fill="none"
-              >
-                <path d="M0.5 0V32.5H29.5" stroke="#FF6E02" />
-              </svg>
+              <UICardCorner position="top-left" />
+              <UICardCorner position="top-right" />
               <UICard class="testimonials__card">
                 <PrismicRichText :field="item.text" />
 
@@ -125,26 +107,8 @@ function handleActiveSlideChange(slideIndex: number) {
                 </div>
               </UICard>
 
-              <svg
-                class="testimonials__card-corner testimonials__card-corner--bottom-left"
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="33"
-                viewBox="0 0 30 33"
-                fill="none"
-              >
-                <path d="M0.5 0V32.5H29.5" stroke="#FF6E02" />
-              </svg>
-              <svg
-                class="testimonials__card-corner testimonials__card-corner--bottom-right"
-                xmlns="http://www.w3.org/2000/svg"
-                width="33"
-                height="30"
-                viewBox="0 0 33 30"
-                fill="none"
-              >
-                <path d="M0 29H32.5V0" stroke="#FF6E02" />
-              </svg>
+              <UICardCorner position="bottom-left" />
+              <UICardCorner position="bottom-right" />
             </div>
           </SliderItem>
 
