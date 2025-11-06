@@ -23,9 +23,6 @@ importers:
       sass-embedded:
         specifier: ^1.90.0
         version: 1.90.0
-      swiper:
-        specifier: ^12.0.3
-        version: 12.0.3
       tailwindcss:
         specifier: ^4.1.12
         version: 4.1.12
@@ -5532,10 +5529,6 @@ packages:
 
   svix@1.76.1:
     resolution: {integrity: sha512-CRuDWBTgYfDnBLRaZdKp9VuoPcNUq9An14c/k+4YJ15Qc5Grvf66vp0jvTltd4t7OIRj+8lM1DAgvSgvf7hdLw==}
-
-  swiper@12.0.3:
-    resolution: {integrity: sha512-BHd6U1VPEIksrXlyXjMmRWO0onmdNPaTAFduzqR3pgjvi7KfmUCAm/0cj49u2D7B0zNjMw02TSeXfinC1hDCXg==}
-    engines: {node: '>= 4.7.0'}
 
   swrv@1.1.0:
     resolution: {integrity: sha512-pjllRDr2s0iTwiE5Isvip51dZGR7GjLH1gCSVyE8bQnbAx6xackXsFdojau+1O5u98yHF5V73HQGOFxKUXO9gQ==}
@@ -12322,8 +12315,6 @@ snapshots:
       fast-sha256: 1.3.0
       url-parse: 1.5.10
       uuid: 10.0.0
-
-  swiper@12.0.3: {}
 
   swrv@1.1.0(vue@3.5.19(typescript@5.9.2)):
     dependencies:
