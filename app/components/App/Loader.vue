@@ -124,10 +124,10 @@ onMounted(() => {
     <div data-load-container class="loader__container">
       <div class="loader__logo-wrap">
         <div class="loader__logo-item is--base">
-          <AppLogo />
+          <AppSvgLogo />
         </div>
         <div data-load-logo class="loader__logo-item is--top">
-          <AppLogo />
+          <AppSvgLogo />
         </div>
       </div>
       <div class="loader__text-wrap">
@@ -209,6 +209,7 @@ onMounted(() => {
 .loader__logo-img {
   width: 100%;
   display: block;
+  fill: #fff;
 }
 
 .loader__text-wrap {

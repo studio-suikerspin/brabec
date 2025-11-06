@@ -126,7 +126,9 @@ onMounted(() => {
 <template>
   <div>
     <AppLoader />
-    <VueLenis ref="lenisRef" root :options="{}" />
-    <slot />
+    <main>
+      <VueLenis ref="lenisRef" root :options="{}" />
+      <slot />
+    </main>
   </div>
 </template>
