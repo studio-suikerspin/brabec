@@ -50,7 +50,7 @@ const state = reactive<Partial<Schema>>({
 
 const toast = useToast();
 
-async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
+async function handleSubmit() {
   try {
     const data = await $fetch('/api/contact', {
       method: 'POST',
