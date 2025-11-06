@@ -2,18 +2,25 @@
 const { gsap } = useGsap();
 
 const eyebrow = ref(null);
+let ctx;
 
 onMounted(() => {
-  gsap.from(eyebrow.value, {
-    duration: 0.2,
-    autoAlpha: 0,
-    y: 40,
-    scrollTrigger: {
-      trigger: eyebrow.value.parentElement,
-      start: 'top 70%',
-      end: 'bottom 50%',
-    },
+  ctx = gsap.context(() => {
+    gsap.from(eyebrow.value, {
+      duration: 0.2,
+      autoAlpha: 0,
+      y: 40,
+      scrollTrigger: {
+        trigger: eyebrow.value.parentElement,
+        start: 'top 70%',
+        end: 'bottom 50%',
+      },
+    });
   });
+});
+
+onUnmounted(() => {
+  ctx?.revert();
 });
 </script>
 

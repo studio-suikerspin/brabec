@@ -243,4 +243,8 @@ const scrollTo = (url) => {
 [data-navigation-status='closed'] ~ .hamburger-nav__bg-dark {
   opacity: 0;
 }
+
+[data-navigation-status='closed'] .hamburger-nav__menu {
+  pointer-events: none;
+}
 </style>

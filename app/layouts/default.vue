@@ -16,7 +16,9 @@ useSeoMeta({
   ogTitle: globalSettings.value?.data.site_title,
   description: globalSettings.value?.data.meta_description,
   ogDescription: globalSettings.value?.data.meta_description,
-  ogImage: computed(() => prismic.asImageSrc(globalSettings.value?.data.meta_image)),
+  ogImage: computed(() =>
+    prismic.asImageSrc(globalSettings.value?.data.meta_image),
+  ),
 });
 
 function initGlobalParallax() {
@@ -36,13 +38,8 @@ function initGlobalParallax() {
         document
           .querySelectorAll('[data-parallax="trigger"]')
           .forEach((trigger) => {
-            // Check if this trigger has to be disabled on smaller breakpoints
-            const disable = trigger.getAttribute('data-parallax-disable');
-            if (
-              (disable === 'mobile' && isMobile) ||
-              (disable === 'mobileLandscape' && isMobileLandscape) ||
-              (disable === 'tablet' && isTablet)
-            ) {
+            // We disable parallax on mobile devices and tablets
+            if (isMobile || isMobileLandscape || isTablet) {
               return;
             }
 

@@ -2,18 +2,25 @@
 const { gsap } = useGsap();
 
 const title = ref(null);
+let ctx;
 
 onMounted(() => {
-  gsap.from(title.value, {
-    duration: 0.2,
-    autoAlpha: 0,
-    y: 50,
-    scrollTrigger: {
-      trigger: title.value.parentElement,
-      start: 'top 70%',
-      end: 'bottom 50%',
-    },
+  ctx = gsap.context(() => {
+    gsap.from(title.value, {
+      duration: 0.2,
+      autoAlpha: 0,
+      y: 50,
+      scrollTrigger: {
+        trigger: title.value.parentElement,
+        start: 'top 70%',
+        end: 'bottom 50%',
+      },
+    });
   });
+});
+
+onUnmounted(() => {
+  ctx?.revert();
 });
 </script>
 
