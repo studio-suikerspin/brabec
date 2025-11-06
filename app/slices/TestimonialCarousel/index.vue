@@ -86,7 +86,7 @@ function handleActiveSlideChange(slideIndex: number) {
           <SliderItem
             v-for="(item, index) in slice.primary.testimonials.concat(
               slice.primary.testimonials,
-              slice.primary.testimonials
+              slice.primary.testimonials,
             )"
             :key="`testimonial-${index}`"
             :classes="['testimonials__carousel-item']"
@@ -193,9 +193,17 @@ function handleActiveSlideChange(slideIndex: number) {
     height: 100%;
   }
 
+  .card {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+
   [data-gsap-slider-item-status='active'] {
     opacity: 1;
     transition: opacity 0.3s ease;
+
+    .card {
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
 
     .testimonials__card-corner {
       opacity: 1;

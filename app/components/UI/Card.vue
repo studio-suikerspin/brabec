@@ -19,7 +19,7 @@ defineProps({
 .card {
   border-radius: var(--card_border-radius);
   background: var(--white);
-  box-shadow: 0 4px 4px 5px rgba(113, 113, 113, 0.05);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
   padding: 13px;
 

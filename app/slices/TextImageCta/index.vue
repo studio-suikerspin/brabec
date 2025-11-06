@@ -94,7 +94,7 @@ defineProps(
     padding: 16px;
     border-radius: 16px;
     background: var(--white);
-    box-shadow: 0 4px 6px 5px rgba(113, 113, 113, 0.05);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     max-width: 300px;
     margin-inline: auto;
     width: 100%;
