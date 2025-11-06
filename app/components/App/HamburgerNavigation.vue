@@ -8,12 +8,35 @@ defineProps({
 
 const hamburgerNav = ref(null);
 const lenis = useLenis();
+const isNavigationActive = ref(false);
+
+// Ensure Safari iOS tab bar stays white at all times
+useHead({
+  meta: [
+    {
+      name: 'theme-color',
+      content: '#ffffff',
+    },
+  ],
+});
+
+// Additional safeguard: Watch for navigation changes and explicitly enforce white theme-color
+watch(isNavigationActive, () => {
+  if (import.meta.client) {
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', '#ffffff');
+    }
+  }
+});
 
 const toggleNavigation = () => {
   hamburgerNav.value.dataset.navigationStatus =
     hamburgerNav.value.dataset.navigationStatus === 'active'
       ? 'closed'
       : 'active';
+
+  isNavigationActive.value = hamburgerNav.value.dataset.navigationStatus === 'active';
 
   if (hamburgerNav.value.dataset.navigationStatus === 'active') {
     lenis.value.stop();
@@ -26,6 +49,7 @@ const scrollTo = (url) => {
   lenis.value.start();
   lenis.value.scrollTo(url);
   hamburgerNav.value.dataset.navigationStatus = 'closed';
+  isNavigationActive.value = false;
 };
 </script>
 

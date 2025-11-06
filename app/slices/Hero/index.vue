@@ -2,7 +2,7 @@
 import { AgendaStatus } from '#components';
 import type { Content } from '@prismicio/client';
 
-const { gsap } = useGsap();
+const { gsap, CustomEase, SplitText } = useGsap();
 const { data: settings } = useSettings().value;
 
 // The array passed to `getSliceComponentProps` is purely optional.
@@ -16,14 +16,49 @@ defineProps(
   ]),
 );
 
+const heroInner = ref(null);
+const agendaStatus = ref(null);
+const heading = ref(null);
+const subtitle = ref(null);
+const buttonGroup = ref(null);
+const trustedBy = ref(null);
+
 const bg1 =
   'linear-gradient(225deg, rgba(255,179,153,.8), rgba(255,179,153,0) 70.71%), linear-gradient(135deg, rgba(255,159,102,.7), rgba(255,159,102,0) 70.71%), linear-gradient(315deg, rgba(255,140,66,.9), rgba(255,140,66,0) 70.71%)';
 const bg2 =
   'linear-gradient(200deg, rgba(255,165,102,.7), rgba(255,165,102,0) 70.71%), linear-gradient(120deg, rgba(255,143,51,.8), rgba(255,143,51,0.1) 70.71%), linear-gradient(340deg, rgba(255,119,34,.6), rgba(255,119,34,0) 70.71%)';
 
 onMounted(() => {
+  const headingSplit = new SplitText(heading.value, { type: 'words' });
+  const tl = gsap.timeline();
+  const fadeIns = gsap.utils.toArray('.fade-in');
+
+  tl.from(heroInner.value, {
+    autoAlpha: 0,
+    y: 50,
+    scale: 0.9,
+    duration: 0.4,
+    delay: 4,
+    ease: 'easeOut',
+  })
+    .from(headingSplit.words, {
+      autoAlpha: 0,
+      y: 30,
+      scale: 0.9,
+      duration: 0.2,
+      stagger: 0.1,
+      ease: 'easeOut',
+    })
+    .from(fadeIns, {
+      opacity: 0,
+      y: 30,
+      duration: 0.3,
+      delay: 0.2,
+      ease: 'easeOut',
+    });
+
   gsap.fromTo(
-    '.hero__inner',
+    heroInner.value,
     {
       background: bg1,
     },
@@ -44,27 +79,31 @@ onMounted(() => {
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
   >
-    <div class="hero__inner">
-      <div v-if="settings">
+    <div ref="heroInner" class="hero__inner">
+      <div v-if="settings" class="fade-in">
         <AgendaStatus :agenda="settings.agenda[0]" data-parallax="trigger" />
       </div>
 
-      <PrismicRichText :field="slice.primary.heading" />
+      <div ref="heading">
+        <PrismicRichText :field="slice.primary.heading" />
+      </div>
 
       <PrismicRichText
         :field="slice.primary.subtitle"
         wrapper="div"
-        class="hero__subtitle"
+        class="hero__subtitle fade-in"
       />
 
-      <div class="button-group" data-parallax="trigger">
+      <div class="button-group fade-in" data-parallax="trigger">
         <template v-for="link in slice.primary.ctas" :key="link.key">
           <UIButton :scroll-to="link.url ? link.url : null" variant="white">
             {{ link.text }}
           </UIButton>
         </template>
 
-        <TrustedBy :avatars="slice.primary.trusted_by_avatars" />
+        <div class="fade-in">
+          <TrustedBy :avatars="slice.primary.trusted_by_avatars" />
+        </div>
       </div>
     </div>
   </section>

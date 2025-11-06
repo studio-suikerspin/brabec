@@ -55,7 +55,7 @@ onBeforeUnmount(() => {
 .header {
   position: absolute;
   top: 36px;
-  z-index: 10001;
+  z-index: 999;
   width: 100%;
 
   &--fixed {

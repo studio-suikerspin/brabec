@@ -1,6 +1,12 @@
 export const useGsap = () => {
-  const { $gsap, $ScrollTrigger, $SplitText, $InertiaPlugin, $Draggable } =
-    useNuxtApp();
+  const {
+    $gsap,
+    $ScrollTrigger,
+    $SplitText,
+    $InertiaPlugin,
+    $Draggable,
+    $CustomEase,
+  } = useNuxtApp();
 
   return {
     gsap: $gsap,
@@ -8,5 +14,6 @@ export const useGsap = () => {
     SplitText: $SplitText,
     InertiaPlugin: $InertiaPlugin,
     Draggable: $Draggable,
+    CustomEase: $CustomEase,
   };
 };
