@@ -102,7 +102,8 @@ defineProps(
     );
 
     min-height: 90svh;
-    padding-block: 40px;
+    padding-block-start: 75px;
+    padding-block-end: 40px;
   }
 
   &__title {
@@ -111,7 +112,7 @@ defineProps(
     font-weight: 600;
     line-height: 100%;
     letter-spacing: -1.296px;
-    text-wrap: balance;
+    /* text-wrap: balance; */
 
     @media screen and (min-width: 992px) {
       font-size: clamp(3rem, 0.7778rem + 7.1111vw, 7rem);
@@ -120,7 +121,7 @@ defineProps(
 
   &__subtitle {
     font-size: 16px;
-    text-wrap: balance;
+    /* text-wrap: balance; */
     max-width: 460px;
     text-align: center;
 
@@ -131,6 +132,7 @@ defineProps(
 
   &__bottom {
     padding-inline: 20px;
+    padding-block: 24px;
 
     display: flex;
     flex-direction: column;
