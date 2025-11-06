@@ -38,13 +38,15 @@ onUnmounted(() => {
 
 <style lang="scss">
 .section-title {
-  font-size: 35px;
+  font-size: 36px;
   font-weight: 700;
   font-style: normal;
   line-height: normal;
   text-align: center;
   color: var(--black);
-  text-wrap: balance;
+  /* text-wrap: balance; */
+
+  padding-inline: 16px;
 
   @media screen and (min-width: 992px) {
     font-size: 56px;

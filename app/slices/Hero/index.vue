@@ -72,7 +72,8 @@ onMounted(() => {
 
 <style lang="scss">
 .hero {
-  padding: 16px;
+  padding-inline: 16px;
+  padding-block: 16px 75px;
   height: 100svh;
 
   &__inner {
@@ -155,7 +156,8 @@ onMounted(() => {
   }
 
   @media screen and (min-width: 992px) {
-    padding: 22px;
+    padding-inline: 22px;
+    padding-block: 22px 100px;
   }
 }
 </style>

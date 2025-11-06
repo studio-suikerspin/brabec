@@ -102,6 +102,7 @@ defineProps(
     );
 
     min-height: 90svh;
+    padding-block: 40px;
   }
 
   &__title {
@@ -129,13 +130,7 @@ defineProps(
   }
 
   &__bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
     padding-inline: 20px;
-    padding-block: 40px;
 
     display: flex;
     flex-direction: column;
@@ -144,6 +139,13 @@ defineProps(
     justify-content: space-between;
 
     @media screen and (min-width: 992px) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      padding-block: 40px;
+
       flex-direction: row;
       gap: unset;
       padding-inline: 80px;

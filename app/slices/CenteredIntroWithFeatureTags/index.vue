@@ -22,7 +22,6 @@ defineProps(
     class="centered-intro block-padding"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    data-parallax="trigger"
   >
     <div class="container">
       <div class="centered-intro__inner">

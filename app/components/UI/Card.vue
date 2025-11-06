@@ -19,9 +19,13 @@ defineProps({
 .card {
   border-radius: var(--card_border-radius);
   background: var(--white);
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: var(--card-shadow--sm);
 
   padding: 13px;
+
+  @media screen and (min-width: 768px) {
+    box-shadow: var(--card-shadow);
+  }
 
   &__inner {
     height: 100%;

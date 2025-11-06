@@ -78,7 +78,7 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
     id="contact"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    class="contact-section block-padding--end"
+    class="contact-section block-padding"
   >
     <div class="contact-section__container container">
       <SectionHeader>
@@ -221,6 +221,10 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 8px;
+
+    @media screen and (min-width: 768px) {
+      font-size: 30px;
+    }
   }
 
   &__form-content {

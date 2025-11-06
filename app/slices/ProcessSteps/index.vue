@@ -297,19 +297,27 @@ onMounted(() => {
     }
 
     &__title {
-      font-size: clamp(1.125rem, 1.0526rem + 0.297vw, 1.3125rem);
+      font-size: 18px;
       font-weight: 600;
       font-style: normal;
       line-height: normal;
       color: var(--black);
+
+      @media screen and (min-width: 768px) {
+        font-size: 21px;
+      }
     }
 
     &__description {
-      font-size: clamp(1rem, 0.9517rem + 0.198vw, 1.125rem);
+      font-size: 16px;
       font-weight: 500;
       font-style: normal;
       line-height: normal;
       color: var(--black);
+
+      @media screen and (min-width: 768px) {
+        font-size: 18px;
+      }
     }
   }
 }

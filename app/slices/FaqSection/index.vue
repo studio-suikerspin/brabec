@@ -138,7 +138,10 @@ onMounted(() => {
                   <div class="accordion-css__item-bottom">
                     <div class="accordion-css__item-bottom-wrap">
                       <div class="accordion-css__item-bottom-content">
-                        <PrismicRichText :field="item.answer" />
+                        <PrismicRichText
+                          :field="item.answer"
+                          class="accordion-css__item-p"
+                        />
                       </div>
                     </div>
                   </div>
@@ -341,9 +344,13 @@ onMounted(() => {
   }
 
   &__item-title {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 500;
     color: var(--black);
+
+    @media screen and (min-width: 768px) {
+      font-size: 24px;
+    }
   }
 
   &__item-icon {
@@ -365,6 +372,10 @@ onMounted(() => {
     opacity: 0.6;
     margin-bottom: 0;
     font-size: 16px;
+
+    @media screen and (min-width: 768px) {
+      font-size: 18px;
+    }
   }
 
   [data-accordion-status='active'] {

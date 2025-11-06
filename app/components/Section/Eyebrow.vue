@@ -38,6 +38,8 @@ onUnmounted(() => {
   justify-content: center;
   gap: 24px;
 
+  padding-inline: 16px;
+
   flex-wrap: nowrap;
   width: 100%;
 
