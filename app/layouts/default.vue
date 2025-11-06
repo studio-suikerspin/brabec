@@ -98,6 +98,7 @@ function initGlobalParallax() {
 }
 
 const lenisRef = ref(null);
+const mainRef = ref(null);
 
 watchEffect((onInvalidate) => {
   if (!lenisRef.value?.lenis) return;
@@ -120,15 +121,28 @@ watchEffect((onInvalidate) => {
 
 onMounted(() => {
   initGlobalParallax();
+
+  gsap.to(mainRef.value, {
+    opacity: 1,
+    duration: 1,
+    ease: 'power2.out',
+    delay: 3,
+  });
 });
 </script>
 
 <template>
   <div>
     <AppLoader />
-    <main>
-      <VueLenis ref="lenisRef" root :options="{}" />
+    <VueLenis ref="lenisRef" root :options="{}" />
+    <main ref="mainRef" class="main">
       <slot />
     </main>
   </div>
 </template>
+
+<style scoped>
+main {
+  opacity: 0;
+}
+</style>

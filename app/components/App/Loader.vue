@@ -145,7 +145,7 @@ onMounted(() => {
 <style>
 .loader {
   z-index: 1000;
-  color: #fff;
+  color: var(--accent_primary);
   width: 100%;
   height: 100dvh;
   position: fixed;
@@ -153,7 +153,7 @@ onMounted(() => {
 }
 
 .loader__bg {
-  background-color: #0a0a0a;
+  background-color: #fff;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -175,7 +175,7 @@ onMounted(() => {
   z-index: 1;
   transform-origin: 0%;
   transform-style: preserve-3d;
-  background-color: #fff;
+  background-color: var(--accent_primary);
   width: 100%;
   height: 0.5em;
   position: absolute;
