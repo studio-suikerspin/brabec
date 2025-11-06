@@ -155,7 +155,11 @@ async function handleSubmit() {
               />
             </UFormField>
 
-            <button type="submit" class="contact-section__submit">
+            <button
+              type="submit"
+              class="contact-section__submit"
+              @click="handleSubmit"
+            >
               {{ slice.primary.button_text }}
             </button>
           </UForm>
