@@ -12,7 +12,6 @@ onMounted(() => {
       trigger: title.value.parentElement,
       start: 'top 70%',
       end: 'bottom 50%',
-      scrub: 0.5,
     },
   });
 });
