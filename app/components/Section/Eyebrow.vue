@@ -9,7 +9,6 @@ onMounted(() => {
     gsap.from(eyebrow.value, {
       duration: 0.2,
       autoAlpha: 0,
-      y: 40,
       scrollTrigger: {
         trigger: eyebrow.value.parentElement,
         start: 'top 70%',

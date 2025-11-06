@@ -1,15 +1,21 @@
 <script setup>
-const { gsap } = useGsap();
+const { gsap, SplitText } = useGsap();
 
 const title = ref(null);
 let ctx;
 
 onMounted(() => {
   ctx = gsap.context(() => {
-    gsap.from(title.value, {
-      duration: 0.2,
+    const titleSplit = SplitText.create(title.value, {
+      type: 'words',
+    });
+
+    gsap.from(titleSplit.words, {
+      delay: 0.2,
+      duration: 0.3,
       autoAlpha: 0,
-      y: 50,
+      stagger: 0.1,
+      y: 20,
       scrollTrigger: {
         trigger: title.value.parentElement,
         start: 'top 70%',

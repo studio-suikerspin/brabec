@@ -157,7 +157,7 @@ defineProps(
     padding: 16px;
     border-radius: 16px;
     background: var(--white);
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 6px 5px rgba(113, 113, 113, 0.05);
 
     max-width: 800px;
     width: 100%;

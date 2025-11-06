@@ -188,7 +188,7 @@ async function handleSubmit(event: FormSubmitEvent<Schema>): Promise<void> {
     border-radius: 20px;
     padding: 20px;
     border: 2px solid rgba(10, 13, 23, 0.05);
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 6px 5px rgba(113, 113, 113, 0.05);
 
     padding-block: 40px;
 
