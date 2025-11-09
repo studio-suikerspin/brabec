@@ -46,7 +46,14 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ['@nuxt/eslint', '@nuxtjs/prismic', '@nuxt/fonts', 'lenis/nuxt', '@nuxt/ui'],
+  modules: [
+    '@nuxt/eslint',
+    '@nuxtjs/prismic',
+    '@nuxt/fonts',
+    'lenis/nuxt',
+    '@nuxt/ui',
+    'nuxt-resend',
+  ],
 
   fonts: {
     defaults: {
