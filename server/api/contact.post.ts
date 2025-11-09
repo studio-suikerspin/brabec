@@ -39,6 +39,43 @@ export default defineEventHandler(async (event) => {
       html: html,
     });
 
+    let userHtml = `<html>
+      <head>
+        <style>
+          body {
+            font-family: Helvetica, sans-serif;
+          }
+          h3 {
+            color: #333;
+          }
+          ul {
+            list-style-type: none;
+            padding: 0;
+          }
+          li {
+            margin-bottom: 10px;
+          }
+        </style>
+      </head>
+      <body>
+          <h3>We hebben uw bericht ontvangen:</h3>
+          <ul>`;
+    Object.keys(body).forEach((key) => {
+      if (body[key]) {
+        userHtml += `<li><strong>${key}:</strong> ${body[key]}</li>`;
+      }
+    });
+
+    userHtml += `</ul>
+      <p>Bedankt! We nemen zo spoedig mogelijk contact met u op.</p>
+    </body></html>`;
+
+    await sendMail({
+      to: body.email,
+      subject: 'Bedankt voor uw contactaanvraag!',
+      html: userHtml,
+    });
+
     if (!data) {
       throw createError({
         statusCode: 500,
