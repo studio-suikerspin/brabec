@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { FormSubmitEvent } from '@nuxt/ui';
 import type { Content } from '@prismicio/client';
 
 import SectionEyebrow from '~/components/Section/Eyebrow.vue';
@@ -16,7 +15,7 @@ defineProps(
   ]),
 );
 
-const form = ref();
+const form = useTemplateRef('form');
 
 const formSchema = z.object({
   firstname: z
@@ -48,7 +47,11 @@ const state = reactive<Partial<Schema>>({
   message: undefined,
 });
 
-const toast = useToast();
+const message = ref({
+  title: '',
+  description: '',
+  color: '',
+});
 
 async function handleSubmit() {
   try {
@@ -57,18 +60,26 @@ async function handleSubmit() {
       body: state,
     });
 
-    toast.add({
-      title: 'Success',
-      description: data.message,
-      color: 'success',
-    });
-    form.value.reset();
+    message.value = {
+      title: 'Bedankt!',
+      description:
+        'We hebben uw bericht ontvangen en zullen zo snel mogelijk contact met u opnemen.',
+      color: 'text-green-600',
+    };
+
+    state.firstname = undefined;
+    state.lastname = undefined;
+    state.email = undefined;
+    state.phone = undefined;
+    state.message = undefined;
   } catch (error) {
-    toast.add({
-      title: 'Error',
-      description: 'There was an error submitting the form: ' + error.message,
-      color: 'error',
-    });
+    console.error(error);
+    message.value = {
+      title: 'Oeps!',
+      description:
+        'Er is een fout opgetreden bij het verzenden van uw bericht. Probeer het later opnieuw of stuur ons een e-mail op info@brabec.com',
+      color: 'text-red-600',
+    };
   }
 }
 </script>
@@ -155,13 +166,16 @@ async function handleSubmit() {
               />
             </UFormField>
 
-            <button
-              type="submit"
-              class="contact-section__submit"
-              @click="handleSubmit"
-            >
+            <button type="submit" class="contact-section__submit">
               {{ slice.primary.button_text }}
             </button>
+
+            <div
+              v-if="message.title"
+              :class="['w-full flex flex-col gap-2 col-span-full']"
+            >
+              <p :class="message.color">{{ message.description }}</p>
+            </div>
           </UForm>
         </div>
 

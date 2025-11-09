@@ -46,13 +46,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: [
-    '@nuxt/eslint',
-    '@nuxtjs/prismic',
-    '@nuxt/fonts',
-    '@nuxt/ui',
-    'lenis/nuxt',
-  ],
+  modules: ['@nuxt/eslint', '@nuxtjs/prismic', '@nuxt/fonts', 'lenis/nuxt', '@nuxt/ui'],
 
   fonts: {
     defaults: {
@@ -90,7 +84,11 @@ export default defineNuxtConfig({
 
   routeRules: {
     // Cache static assets aggressively
-    '/assets/**': { headers: { 'cache-control': 'public, max-age=31536000, immutable' } },
+    '/assets/**': {
+      headers: { 'cache-control': 'public, max-age=31536000, immutable' },
+    },
+    // Disable caching for contact form endpoint
+    '/api/contact': { cache: false },
     // Cache API responses briefly
     '/api/**': { cache: { maxAge: 60 } },
   },
