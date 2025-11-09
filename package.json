@@ -22,7 +22,7 @@
     "@slicemachine/adapter-nuxt": "^0.3.83",
     "concurrently": "^9.2.0",
     "eslint": "^9.31.0",
-    "nuxt": "^4.0.0",
+    "nuxt": "^4.2.1",
     "slice-machine-ui": "^2.18.1",
     "typescript": "^5.9.2"
   },
