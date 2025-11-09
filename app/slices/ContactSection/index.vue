@@ -47,6 +47,7 @@ const state = reactive<Partial<Schema>>({
   message: undefined,
 });
 
+const loading = ref(false);
 const message = ref({
   title: '',
   description: '',
@@ -55,6 +56,7 @@ const message = ref({
 
 async function handleSubmit() {
   try {
+    loading.value = true;
     const data = await $fetch('/api/contact', {
       method: 'POST',
       body: state,
@@ -80,6 +82,8 @@ async function handleSubmit() {
         'Er is een fout opgetreden bij het verzenden van uw bericht. Probeer het later opnieuw of stuur ons een e-mail op info@brabec.com',
       color: 'text-red-600',
     };
+  } finally {
+    loading.value = false;
   }
 }
 </script>
@@ -166,8 +170,12 @@ async function handleSubmit() {
               />
             </UFormField>
 
-            <button type="submit" class="contact-section__submit">
-              {{ slice.primary.button_text }}
+            <button
+              type="submit"
+              class="contact-section__submit disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              :disabled="loading"
+            >
+              {{ loading ? 'Verzenden...' : slice.primary.button_text }}
             </button>
 
             <div

@@ -52,7 +52,19 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'lenis/nuxt',
     '@nuxt/ui',
+    'nuxt-nodemailer',
   ],
+
+  nodemailer: {
+    from: '"Brabec.nl" <website@brabec.nl>',
+    host: 'smtp.transip.email',
+    port: 465,
+    secure: true,
+    auth: {
+      user: '',
+      pass: '',
+    },
+  },
 
   fonts: {
     defaults: {
