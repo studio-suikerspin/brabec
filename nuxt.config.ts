@@ -52,7 +52,6 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'lenis/nuxt',
     '@nuxt/ui',
-    'nuxt-resend',
   ],
 
   fonts: {
