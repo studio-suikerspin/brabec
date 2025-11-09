@@ -1,7 +1,9 @@
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.NUXT_RESEND_API_KEY);
+
 export default defineEventHandler(async (event) => {
   try {
-    const { emails } = useResend();
-
     const body = await readBody(event);
 
     let html = `<html>
@@ -33,7 +35,7 @@ export default defineEventHandler(async (event) => {
 
     html += `</ul></body></html>`;
 
-    const data = await emails.send({
+    const data = await resend.emails.send({
       from: process.env.MAIL_FROM
         ? process.env.MAIL_FROM
         : 'info@suikerspin.studio',
