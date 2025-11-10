@@ -17,11 +17,11 @@ export default async (request, context) => {
     const mailgun = new Mailgun(FormData);
     const mg = mailgun.client({
       username: 'api',
-      key: process.env.MAILGUN_API_KEY,
+      key: process.env.NUXT_MAILGUN_API_KEY,
       url: 'https://api.eu.mailgun.net', // EU infrastructure
     });
 
-    const domain = process.env.MAILGUN_DOMAIN || 'mail.suikerspin.studio';
+    const domain = process.env.NUXT_MAILGUN_DOMAIN || 'mail.suikerspin.studio';
     const fromEmail = `"Brabec.nl" <brabec@${domain}>`;
 
     // Build admin notification email HTML
@@ -58,7 +58,7 @@ export default async (request, context) => {
     // Send admin notification email
     await mg.messages.create(domain, {
       from: fromEmail,
-      to: [process.env.MAIL_TO || 'info@suikerspin.studio'],
+      to: [process.env.NUXT_MAIL_TO || 'info@suikerspin.studio'],
       subject: 'Nieuwe contactaanvraag ontvangen!',
       html: html,
     });
