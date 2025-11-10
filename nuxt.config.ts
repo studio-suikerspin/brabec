@@ -11,13 +11,6 @@ export default defineNuxtConfig({
     },
   },
 
-  runtimeConfig: {
-    // Mailgun configuration (server-only)
-    mailgunApiKey: '', // NUXT_MAILGUN_API_KEY
-    mailgunDomain: 'mail.suikerspin.studio', // NUXT_MAILGUN_DOMAIN
-    mailTo: 'info@suikerspin.studio', // NUXT_MAIL_TO
-  },
-
   app: {
     head: {
       title: 'BRABEC - Digitaliseren voor iedereen',
@@ -102,10 +95,6 @@ export default defineNuxtConfig({
     },
     // Cache API responses briefly
     '/api/**': { cache: { maxAge: 60 } },
-    '/api/contact': {
-      cache: false,
-      isr: false,
-    },
   },
 
   nitro: {

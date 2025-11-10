@@ -1,19 +1,27 @@
 import Mailgun from 'mailgun.js';
 
-export default defineEventHandler(async (event) => {
+export default async (request, context) => {
+  // Only allow POST requests
+  if (request.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+      status: 405,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   try {
-    const body = await readBody(event);
-    const config = useRuntimeConfig(event);
+    // Parse request body
+    const body = await request.json();
 
     // Initialize Mailgun client
     const mailgun = new Mailgun(FormData);
     const mg = mailgun.client({
       username: 'api',
-      key: config.mailgunApiKey,
+      key: process.env.MAILGUN_API_KEY,
       url: 'https://api.eu.mailgun.net', // EU infrastructure
     });
 
-    const domain = config.mailgunDomain;
+    const domain = process.env.MAILGUN_DOMAIN || 'mail.suikerspin.studio';
     const fromEmail = `"Brabec.nl" <brabec@${domain}>`;
 
     // Build admin notification email HTML
@@ -38,6 +46,7 @@ export default defineEventHandler(async (event) => {
       <body>
           <h3>Nieuwe contactaanvraag ontvangen!</h3>
           <ul>`;
+
     Object.keys(body).forEach((key) => {
       if (body[key]) {
         html += `<li><strong>${key}:</strong> ${body[key]}</li>`;
@@ -49,7 +58,7 @@ export default defineEventHandler(async (event) => {
     // Send admin notification email
     await mg.messages.create(domain, {
       from: fromEmail,
-      to: [config.mailTo],
+      to: [process.env.MAIL_TO || 'info@suikerspin.studio'],
       subject: 'Nieuwe contactaanvraag ontvangen!',
       html: html,
     });
@@ -76,6 +85,7 @@ export default defineEventHandler(async (event) => {
       <body>
           <h3>We hebben uw bericht ontvangen:</h3>
           <ul>`;
+
     Object.keys(body).forEach((key) => {
       if (body[key]) {
         userHtml += `<li><strong>${key}:</strong> ${body[key]}</li>`;
@@ -94,12 +104,24 @@ export default defineEventHandler(async (event) => {
       html: userHtml,
     });
 
-    return { message: 'Email sent successfully' };
-  } catch (error: unknown) {
+    return new Response(
+      JSON.stringify({ message: 'Email sent successfully' }),
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
+  } catch (error) {
     console.error('Mailgun error:', error);
-    throw createError({
-      statusCode: 500,
-      statusMessage: 'Internal Server Error: ' + error.message,
-    });
+    return new Response(
+      JSON.stringify({
+        error: 'Failed to send email',
+        details: error.message,
+      }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
   }
-});
+};

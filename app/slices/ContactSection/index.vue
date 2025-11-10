@@ -57,7 +57,7 @@ const message = ref({
 async function handleSubmit() {
   try {
     loading.value = true;
-    const data = await $fetch('/api/contact', {
+    const data = await $fetch('/.netlify/functions/send-contact-email', {
       method: 'POST',
       body: state,
     });
