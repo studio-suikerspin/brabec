@@ -108,6 +108,7 @@ export default defineNuxtConfig({
 
   nitro: {
     compressPublicAssets: true,
+    preset: 'netlify',
   },
 
   compatibilityDate: '2025-07-16',
