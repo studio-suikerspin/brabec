@@ -124,9 +124,7 @@ async function handleSubmit() {
             :state="state"
             :schema="formSchema"
             class="contact-section__form"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-            method="POST"
+            @submit.prevent="handleSubmit"
           >
             <UFormField class="field-wrap field-wrap--half" name="firstname">
               <UInput

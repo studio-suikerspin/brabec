@@ -3,16 +3,17 @@ import Mailgun from 'mailgun.js';
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event);
+    const config = useRuntimeConfig(event);
 
     // Initialize Mailgun client
     const mailgun = new Mailgun(FormData);
     const mg = mailgun.client({
       username: 'api',
-      key: process.env.NUXT_MAILGUN_API_KEY || '',
+      key: config.mailgunApiKey,
       url: 'https://api.eu.mailgun.net', // EU infrastructure
     });
 
-    const domain = process.env.NUXT_MAILGUN_DOMAIN || 'mail.suikerspin.studio';
+    const domain = config.mailgunDomain;
     const fromEmail = `"Brabec.nl" <brabec@${domain}>`;
 
     // Build admin notification email HTML
@@ -48,7 +49,7 @@ export default defineEventHandler(async (event) => {
     // Send admin notification email
     await mg.messages.create(domain, {
       from: fromEmail,
-      to: [process.env.NUXT_MAIL_TO || 'info@suikerspin.studio'],
+      to: [config.mailTo],
       subject: 'Nieuwe contactaanvraag ontvangen!',
       html: html,
     });
