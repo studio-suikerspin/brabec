@@ -124,7 +124,9 @@ async function handleSubmit() {
             :state="state"
             :schema="formSchema"
             class="contact-section__form"
-            @submit.prevent="handleSubmit"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            method="POST"
           >
             <UFormField class="field-wrap field-wrap--half" name="firstname">
               <UInput
@@ -177,6 +179,8 @@ async function handleSubmit() {
             >
               {{ loading ? 'Verzenden...' : slice.primary.button_text }}
             </button>
+
+            <input type="hidden" name="form-name" value="contact_form" />
 
             <div
               v-if="message.title"
