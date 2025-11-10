@@ -100,10 +100,12 @@ export default defineNuxtConfig({
     '/assets/**': {
       headers: { 'cache-control': 'public, max-age=31536000, immutable' },
     },
-    // Disable caching for contact form endpoint
-    '/api/contact': { cache: false },
     // Cache API responses briefly
     '/api/**': { cache: { maxAge: 60 } },
+    '/api/contact': {
+      cache: false,
+      isr: false,
+    },
   },
 
   nitro: {
