@@ -34,7 +34,9 @@ export default defineEventHandler(async (event) => {
     html += `</ul></body></html>`;
 
     const data = await sendMail({
-      to: process.env.MAIL_TO ? process.env.MAIL_TO : 'info@suikerspin.studio',
+      to: process.env.NUXT_MAIL_TO
+        ? process.env.NUXT_MAIL_TO
+        : 'info@suikerspin.studio',
       subject: 'Nieuwe contactaanvraag ontvangen!',
       html: html,
     });
