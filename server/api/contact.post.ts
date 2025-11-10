@@ -1,9 +1,21 @@
+import Mailgun from 'mailgun.js';
+
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event);
 
-    const { sendMail } = useNodeMailer();
+    // Initialize Mailgun client
+    const mailgun = new Mailgun(FormData);
+    const mg = mailgun.client({
+      username: 'api',
+      key: process.env.MAILGUN_API_KEY || '',
+      url: 'https://api.eu.mailgun.net', // EU infrastructure
+    });
 
+    const domain = process.env.MAILGUN_DOMAIN || 'mail.suikerspin.studio';
+    const fromEmail = `"Brabec.nl" <brabec@${domain}>`;
+
+    // Build admin notification email HTML
     let html = `<html>
       <head>
         <style>
@@ -33,14 +45,15 @@ export default defineEventHandler(async (event) => {
 
     html += `</ul></body></html>`;
 
-    const data = await sendMail({
-      to: process.env.NUXT_MAIL_TO
-        ? process.env.NUXT_MAIL_TO
-        : 'info@suikerspin.studio',
+    // Send admin notification email
+    await mg.messages.create(domain, {
+      from: fromEmail,
+      to: [process.env.MAIL_TO || 'info@suikerspin.studio'],
       subject: 'Nieuwe contactaanvraag ontvangen!',
       html: html,
     });
 
+    // Build user confirmation email HTML
     let userHtml = `<html>
       <head>
         <style>
@@ -72,22 +85,17 @@ export default defineEventHandler(async (event) => {
       <p>Bedankt! We nemen zo spoedig mogelijk contact met u op.</p>
     </body></html>`;
 
-    await sendMail({
-      to: body.email,
+    // Send user confirmation email
+    await mg.messages.create(domain, {
+      from: fromEmail,
+      to: [body.email],
       subject: 'Bedankt voor uw contactaanvraag!',
       html: userHtml,
     });
 
-    if (!data) {
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'Internal Server Error: Email not sent',
-      });
-    }
-
     return { message: 'Email sent successfully' };
   } catch (error: unknown) {
-    console.error(error);
+    console.error('Mailgun error:', error);
     throw createError({
       statusCode: 500,
       statusMessage: 'Internal Server Error: ' + error.message,
