@@ -1,5 +1,4 @@
 import Mailgun from 'mailgun.js';
-import formData from 'form-data';
 
 export default defineEventHandler(async (event) => {
   try {
@@ -7,7 +6,7 @@ export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig(event);
 
     // Initialize Mailgun client
-    const mailgun = new Mailgun(formData);
+    const mailgun = new Mailgun(FormData);
     const mg = mailgun.client({
       username: 'api',
       key: config.mailgunApiKey,
