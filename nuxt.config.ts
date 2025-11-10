@@ -56,12 +56,12 @@ export default defineNuxtConfig({
   ],
 
   nodemailer: {
-    from: '"Brabec.nl" <website@brabec.nl>',
-    host: 'smtp.transip.email',
+    from: '"Brabec.nl" <brabec@mail.suikerspin.studio>',
+    host: 'smtp.eu.mailgun.org',
     port: 465,
     secure: true,
     auth: {
-      user: '',
+      user: 'brabec@mail.suikerspin.studio',
       pass: '',
     },
   },
