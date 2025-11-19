@@ -289,6 +289,8 @@ async function handleSubmit() {
       border: 1px solid rgba(0, 0, 0, 0.1);
       background: white;
 
+      resize: none;
+
       &.ring-error {
         border-color: var(--error);
       }
