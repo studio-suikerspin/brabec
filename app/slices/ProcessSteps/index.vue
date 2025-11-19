@@ -191,6 +191,7 @@ onMounted(() => {
     column-gap: 24px;
     row-gap: 24px;
     padding-block: 80px;
+    padding-block-start: 40px;
 
     flex: 1;
 
@@ -201,6 +202,7 @@ onMounted(() => {
 
     @media screen and (min-width: 992px) {
       grid-template-columns: repeat(3, 1fr);
+      padding-block-start: 80px;
     }
 
     @media screen and (min-width: 1280px) {
