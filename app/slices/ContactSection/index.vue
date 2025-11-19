@@ -317,6 +317,7 @@ async function handleSubmit() {
   }
 
   .image-wrap {
+    max-height: 600px;
     height: auto;
     border-radius: 10px;
     overflow: hidden;
