@@ -328,7 +328,7 @@ onMounted(() => {
     position: relative;
     overflow: hidden;
     scale: 0;
-    transform: translate(-8px 0);
+    transform: translate(0px 0);
     transition:
       scale 0.6s cubic-bezier(0.625, 0.05, 0, 1),
       transform 0.4s cubic-bezier(0.625, 0.05, 0, 1),
