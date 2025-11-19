@@ -101,7 +101,7 @@ function handleActiveSlideChange(slideIndex: number) {
                   <UIAvatar>
                     <PrismicImage :field="item.author_avatar" />
                   </UIAvatar>
-                  <p class="text-sm">
+                  <p class="text-sm flex-1">
                     {{ item.author_name }}, {{ item.author_role }}
                   </p>
                 </div>
