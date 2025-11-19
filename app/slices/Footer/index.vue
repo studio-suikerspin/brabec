@@ -112,7 +112,6 @@ defineProps(
     font-weight: 600;
     line-height: 100%;
     letter-spacing: -1.296px;
-    /* text-wrap: balance; */
     max-width: 1000px;
 
     @media screen and (min-width: 992px) {

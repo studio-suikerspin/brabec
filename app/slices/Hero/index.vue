@@ -127,6 +127,7 @@ onMounted(() => {
     border-radius: 30px;
 
     padding-inline: 24px;
+    padding-top: 48px;
 
     max-width: 1500px;
     margin-inline: auto;
