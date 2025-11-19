@@ -219,7 +219,7 @@ onMounted(() => {
 
       &--top {
         bottom: -20%;
-        left: 50%;
+        left: 60%;
         rotate: 90deg;
 
         @media screen and (min-width: 650px) {
@@ -230,9 +230,9 @@ onMounted(() => {
       }
 
       &--bottom {
-        bottom: -25%;
+        bottom: -35%;
         left: 5%;
-        rotate: 55deg;
+        rotate: 40deg;
 
         @media screen and (min-width: 650px) {
           bottom: -20%;
@@ -248,7 +248,7 @@ onMounted(() => {
       }
 
       &--curly {
-        bottom: -20%;
+        bottom: -30%;
         left: 60%;
         rotate: 95deg;
 
