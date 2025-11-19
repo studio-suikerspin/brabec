@@ -120,8 +120,8 @@ function initBasicGSAPSlider() {
 
     // Calculate centerOffset based on slides per view to maintain peek effect
     let centerOffset;
-    if (spv === 1 || spv >= 3) {
-      // Full centering for mobile (no peek) or desktop
+    if (spv === 1 || spv >= 2.5) {
+      // Full centering for mobile (no peek) or desktop (2.5+ slides)
       centerOffset = vw / 2 - slideW / 2;
     } else if (spv >= 2) {
       // Tablet: reduced offset to maintain peek
@@ -437,7 +437,7 @@ onMounted(() => {
 
 [data-gsap-slider-init] {
   --slider-status: on; /* Turn slider on/off */
-  --slider-spv: 3; /* Slides per view */
+  --slider-spv: 2.5; /* Slides per view */
   --slider-gap: 24px; /* Slides Gap */
 }
 
