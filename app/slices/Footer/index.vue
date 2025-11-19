@@ -113,6 +113,7 @@ defineProps(
     line-height: 100%;
     letter-spacing: -1.296px;
     /* text-wrap: balance; */
+    max-width: 1000px;
 
     @media screen and (min-width: 992px) {
       font-size: clamp(3rem, 0.7778rem + 7.1111vw, 7rem);
