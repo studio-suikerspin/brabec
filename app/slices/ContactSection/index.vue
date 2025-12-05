@@ -5,6 +5,7 @@ import SectionEyebrow from '~/components/Section/Eyebrow.vue';
 import SectionTitle from '~/components/Section/Title.vue';
 
 import * as z from 'zod';
+import { PrismicImage } from '#components';
 
 defineProps(
   getSliceComponentProps<Content.HeadlineFormImageSplitSlice>([
@@ -190,7 +191,7 @@ async function handleSubmit() {
         </div>
 
         <div class="image-wrap">
-          <img :src="slice.primary.form_image.url" alt="" />
+          <PrismicImage :field="slice.primary.form_image" />
         </div>
       </div>
     </div>

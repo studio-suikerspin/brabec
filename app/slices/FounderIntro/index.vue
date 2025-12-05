@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PrismicRichText } from '#components';
+import { PrismicImage, PrismicRichText } from '#components';
 import type { Content } from '@prismicio/client';
 
 import SectionEyebrow from '@/components/Section/Eyebrow.vue';
@@ -43,7 +43,7 @@ defineProps(
           <div class="founder-intro__column">
             <div class="image-container">
               <div class="image-wrap">
-                <img :src="slice.primary.portrait.url" alt="" />
+                <PrismicImage :field="slice.primary.portrait" />
               </div>
             </div>
 

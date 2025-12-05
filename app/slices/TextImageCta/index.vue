@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { PrismicImage } from '#components';
 import type { Content } from '@prismicio/client';
 
 // The array passed to `getSliceComponentProps` is purely optional.
@@ -34,7 +35,7 @@ defineProps(
         </div>
 
         <div class="image-wrap">
-          <img :src="slice.primary.media.url" alt="" />
+          <PrismicImage :field="slice.primary.media" alt="" />
         </div>
       </div>
     </div>
