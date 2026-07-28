@@ -99,7 +99,7 @@ export default defineNuxtConfig({
 
   nitro: {
     compressPublicAssets: true,
-    preset: 'netlify',
+    preset: 'vercel',
   },
 
   compatibilityDate: '2025-07-16',
